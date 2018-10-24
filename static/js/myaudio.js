@@ -36,14 +36,10 @@ $(function () {
                         $('.progress-span2').html(e.pageX - div_x)
                      }
                 }
-                else{
-
-                }
             }).mouseup(
                 function () {
                     isMove = false;
                 });
-
         });
     }
 

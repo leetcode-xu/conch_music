@@ -11,6 +11,9 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/jQuery-carouselFigure.min.css' %}"/>
         <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/myaudio.css' %}">
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/modernizr.custom.28468.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.cslider.js' %}"></script>
         {% block head %}
         {% endblock %}
         <style>
@@ -159,7 +162,7 @@
             <div class="progress-bar">
                 <span class="progress-span1">00:00</span>
                 <div class="progress"></div>
-                <div cla="--"></div>
+                <div class="progress-runaway"></div>
                 <div class="progress-btn"></div>
                 <span class="progress-span2">00:00</span>
             </div>
@@ -170,7 +173,8 @@
                 <div class="volume-runaway"></div>
             </div>
         </div>
-        <audio id="audio"></audio>
+        <audio id="audio" controls = 'controls' autoplay src="{% static 'music/周杰伦/告白气球.mp3' %}">
+        </audio>
         <script type="text/javascript" src="{% static 'js/myaudio.js' %}"></script>
 		<!-- start footer -->
         <div class="footer_bg">
@@ -249,9 +253,6 @@
 		</div>
         <!---//End-login-script--->
         <!---strat-slider---->
-        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/modernizr.custom.28468.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/jquery.cslider.js' %}"></script>
         <script type="text/javascript">
             $(function() {
 

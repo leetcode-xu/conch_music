@@ -25,11 +25,11 @@ $('.rows').mouseout(function (e) {
    $(this).find('.download_a').css('display','none');
    $(this).find('.add_a').css('display','none');
    $(this).find('.play_a').css('display','none');
-})
+});
 
 $('.rows .play_a').click(function () {
     path = $(this).data('music_path');
     path = '../music' + path + 'mp3';
     // $('.audio').srcs.playCurrentMusic(path);
     // alert($('.audio').srcs);
-})
+});
