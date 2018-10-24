@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import  HttpResponse
 # Create your views here.
-from discover.models import *
+from .models import *
 
 
 
@@ -20,15 +20,20 @@ def my_music(request):
 
 
 def attention(request):
-    # user_id = request.session.get('user_id', None)
-    # fan_list = Fan.objects.filter(fan_id = user_id)
+    user_id = request.session.get('user_id', None)
+    fan_list = Friend.objects.filter(user_id = user_id)
     # if fan_list:
-    #     return render(request, 'my_music/focus.html', {'list': fan_list})
+    return render(request, 'my_music/focus.html', {'list': fan_list,'user':request.session})
 
-    return render(request, 'my_music/focus.html', {})
+    # return render(request, 'my_music/focus.html', {})
 
 
-def sheet(request):
-    user_id = request.session['user_id']
-    sheet = UserSheet.objects.filter(user_id=user_id)
-    return render(request, 'my_music/sheet.html', {'sheet':sheet, 'user':request.session})
+def fans(request):
+    user_id = request.session.get('user_id', None)
+    fan_list = Friend.objects.filter(user_id=user_id)
+    return render(request, 'my_music/fans.html', {'list': fan_list,'user':request.session})
+
+def focus_user(request):
+    user_id = request.session.get('user_id', None)
+    fan_list = Friend.objects.filter(user_id=user_id)
+    return render(request, 'my_music/focus_user.html', {'list': fan_list,'user':request.session})

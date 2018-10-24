@@ -39,7 +39,7 @@ a:active{text-decoration: none;color:green;}
 	background: #fff;
 	position: relative;
 	left: 200px;
-
+    width: 1200px;
 
 }
 .song_top{
@@ -627,11 +627,11 @@ a:active{text-decoration: none;color:green;}
 
     width: 700px;
     position: absolute;
-    top: 560px;
-    left: 532px;
+    top: 67%;
+    left: 32%;
 }
 .login_me,.login_bt,.login_butt{
-    margin-top: 25px;
+    margin-top: 4%;
 }
 .login_bt{
     font-size: 46px;
@@ -648,7 +648,7 @@ a:active{text-decoration: none;color:green;}
 	background: #31c27c;
 	font-size: 20px;
     position: absolute;
-    left: 300px;
+    left: 43%;
     border: 0px;
     color: white;
     border-radius: 2px;
@@ -737,7 +737,8 @@ a:active{text-decoration: none;color:green;}
 	position: relative;
 	zoom: 1;
 	border-bottom: 1px solid #f7f7f7;
-	margin-bottom: 30px
+	margin-bottom: 30px;
+    left: 4%;
 }
 
 .mod_tab__item {
@@ -752,14 +753,201 @@ a:active{text-decoration: none;color:green;}
 	color: #31c27c
 }
 
+.btn_focus_fan {
+	position: absolute;
+	right: 0;
+	top: 15px;
+	margin-right: 0;
+}
 
 
+.mod_singer_list {
+	overflow: hidden;
+	text-align: center
+}
+
+.singer_list__list {
+	margin-right: -20px;
+	overflow: hidden;
+	zoom: 1;
+	margin-bottom: -24px
+}
+
+.singer_list__item {
+	float: left;
+	width: 20%;
+	margin-bottom: 20px;
+	overflow: hidden
+}
+
+.singer_list__item_box {
+	position: relative;
+	margin-right: 20px;
+	background-color: #fbfbfd;
+	min-height: 195px;
+	padding: 25px 0;
+	overflow: hidden
+}
+
+.singer_list__cover,
+.singer_list__pic {
+	display: block;
+	width: 140px;
+	height: 140px;
+	border-radius: 126px
+}
+
+.singer_list__cover {
+	margin-left: auto;
+	margin-right: auto
+}
+
+.singer_list__title {
+	font-size: 16px;
+	font-weight: 400;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	margin: 20px 30px 4px;
+}
+.singer_list__title a{
+    position: relative;
+    left: 15px;
+}
 
 
+.singer_list__info {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	line-height: 22px;
+	height: 22px
+}
+
+.singer_list__info,
+.singer_list__info a {
+	color: #999
+}
+
+.singer_list__info a:hover {
+	color: #31c27c
+}
+
+.singer_list__focus {
+	display: none
+}
+
+.singer_list__item .btn_operate_menu {
+	bottom: 20px
+}
+
+.singer_list__item--current .btn_operate_menu,
+.singer_list__item--hover .btn_operate_menu {
+	right: 20px
+}
+
+.singer_list__item--current .singer_list__item_box--disable .btn_operate_menu,
+.singer_list__item--hover .singer_list__item_box--disable .btn_operate_menu {
+	display: none
+}
+
+.singer_list__item--current .singer_list__item_box--disable .singer_list__focus,
+.singer_list__item--hover .singer_list__item_box--disable .singer_list__focus {
+	display: block;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#19000000', endColorstr='#19000000');
+	background: rgba(0, 0, 0, .1)
+}
+
+.singer_list__item--current .singer_list__item_box--disable .singer_list__btn_focus,
+.singer_list__item--hover .singer_list__item_box--disable .singer_list__btn_focus {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -20px -60px
+}
+
+.singer_list__item_box--disable .singer_list__cover,
+.singer_list__item_box--disable .singer_list__info,
+.singer_list__item_box--disable .singer_list__title {
+	opacity: .4;
+	filter: alpha(opacity=40)
+}
+
+.mod_singer_list--fans .btn_operate_menu {
+	display: none
+}
+
+.mod_singer_list--fans .singer_list__focus {
+	display: block
+}
+
+.mod_singer_list--fans .singer_list__btn_focus {
+	display: block;
+	margin: 9px auto 0
+}
+
+.singer_list__btn_focus {
+	width: 120px;
+	padding: 0;
+	margin-right: 0
+}
+
+.btn_focus__cont {
+	cursor: pointer
+}
+
+#focus_box a{
+    color: black;
+}
+
+#focus_box a:hover{
+    color: greenyellow;
+}
+
+.singer_list__item_box h3{
+    float: none;
+}
 
 
+.focus_not_user{
+    width: 1200px;
+    min-height: 400px;
+    background-image: url(../../static/images/symbol_none.png);
+    background-repeat: no-repeat;
+    background-position: 58% 19%;
+}
+.none_txt p{
+    position: relative;
+    left: 46%;
+    top: 271px;
+    font-size: 19px;
+    font-family: “宋体”;
+}
+.none_txt p a:hover{
+    color:greenyellow;
+
+}
 
 
+.focus_not_user_fans{
+    width: 1200px;
+    min-height: 500px;
+    background-image: url(../../static/images/symbol_none.png);
+    background-repeat: no-repeat;
+    background-position: 58% 42%;
+}
+.none_txt_fans p{
+    position: relative;
+    left: 52%;
+    top: 347px;
+    font-size: 19px;
+    font-family: “宋体”;
+}
 
 
 

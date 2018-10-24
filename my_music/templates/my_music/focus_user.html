@@ -42,15 +42,15 @@
 
     <div class="js_box" id="focus_box" style="display: block;">
         <div class="mod_tab" role="nav">
-            <a class="mod_tab__item mod_tab__current" href="#" >歌手</a>
-            <a class="mod_tab__item" href="{% url 'my_music:focus_user' %}" >用户</a>
+            <a class="mod_tab__item mod_tab__current" href="{% url 'my_music:attention' %}" >歌手</a>
+            <a class="mod_tab__item" href="#" >用户</a>
         </div>
         <div class="profile_cont">
-            <a href="{% url 'index' %}" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">
+            <a href="javascript:;" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">
                 <i class="mod_btn__icon_new"></i>关注更多歌手
             </a>
 
-        {% if not list %}
+        {% if list %}
             <div class="js_sub" id="focus_singer_box" style="display: block;">
                 <div class="mod_singer_list mod_singer_list--fans">
                     <ul class="singer_list__list">
