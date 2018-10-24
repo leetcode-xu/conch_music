@@ -11,8 +11,7 @@ static/music/
 static/images
 .project
 *.pyc
-__pycache__
-__pycache__/
+
 
 将删除 client/__pycache__/
 将删除 client/migrations/__pycache__/
@@ -30,3 +29,4 @@ __pycache__/
 将删除 discover/migrations/0005_musiclist_length_name.py
 将删除 discover/templates/discover/audio.html
 将删除 my_music/migrations/0001_initial.py
+将删除 static/test.html
