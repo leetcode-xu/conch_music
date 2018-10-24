@@ -5,15 +5,54 @@
 
 
 $(function () {
+
+    function preloadAudioState(){
+        audio = $('#audio')[0];
+        // alert(audio.duration);
+        audio.src("{% static 'music/周杰伦/告白气球.mp3' %}");
+        // $('.progress-span2').html('sdf');
+    }
+    preloadAudioState();
+
+    $('.rows').mouseover(function (e) {
+        $(this).find('.download_a').css('display','block');
+        $(this).find('.add_a').css('display','block');
+        $(this).find('.play_a').css('display','block');
+    });
+
+    $('.rows').mouseout(function (e) {
+        $(this).find('.download_a').css('display','none');
+        $(this).find('.add_a').css('display','none');
+        $(this).find('.play_a').css('display','none');
+    });
+
+    // $('.rows .play_a').click(function () {
+    //     path = $(this).data('music_path');
+    //     path = "{% static  '"+ path +"'   %}";
+    //     audio.
+    //
+    // });
+
+
+
     $('.audio_play').click(function () {
         $(this).toggleClass('audio_play');
         $(this).toggleClass('audio_pause');
+        audio = $('#audio')[0]
+        if(audio.paused)
+            audio.play();
+        else
+            audio.pause();
     });
-    $('.audio_pause').click(function () {
-        $(this).toggleClass('audio_play');
-        $(this).toggleClass('audio_pause');
-    });
+    // $('.audio_pause').click(function () {
+    //     $(this).toggleClass('audio_play');
+    //     $(this).toggleClass('audio_pause');
+    //     $('#audio')[0].play();
+    //
+    // });
     dragProgressMove(".progress-btn", ".progress-btn", '.progress', 0);
+
+
     function dragProgressMove(downDiv, moveDiv, progress, flag) {
         beginLocation = $(moveDiv).offset().left - $('.channel').offset().left;
         endLocation = $(progress).outerWidth() + beginLocation;
@@ -42,6 +81,9 @@ $(function () {
                 });
         });
     }
+
+
+
 
     // dragVolumeMove('.volume-btn-mobile', '.volume-btn-mobile', '.volume-progress');
 
