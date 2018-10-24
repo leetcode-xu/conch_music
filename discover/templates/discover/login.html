@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    用户登录
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+{% block main %}
+    <style type="text/css">
+        a{
+            text-decoration:none;
+        }
+        p{
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+        input{
+            height: px;
+            width: 100%;
+            border: 1px solid #fffbfb;
+            font-size: 14px;
+        }
+        p input{
+            margin-left: 10px;
+        }
+        label {
+            cursor: default;
+        }
+        .tpass-label {
+            display: block;
+            float: left;
+            width: 44px;
+            height: 48px;
+            line-height: 48px;
+            margin-right: 8px;
+            text-align: right;
+            color: #999;
+            font-size: 14px;
+        }
+        .tpass-text-input {
+            display: block;
+            float: left;
+            width: 314px;
+            height: 16px;
+            padding: 15px 18px;
+            border: solid 1px #ddd;
+            font-size: 14px;
+            background: #fff;
+              margin-bottom: 20px;
+                zoom: 1;
+           }
+        .tpass-form-item {
+                position: relative;
+                clear: both;
+                height: 48px;
+               padding-left: 25px;
+        }
+        .remember .button{
+            width: 82%;
+            margin-right: 13%;
+        }
+        #login-form-remember{
+            margin-left: 6%;
+        }
+
+    </style>
+    <div class="login">
+        <div class="wrap">
+            <div class="col_1_of_login span_1_of_login">
+                <h4 class="title">新客户</h4>
+                <p>我们平台拥有全网最火的歌曲和最大的歌曲库，如果你还没有用过我们的音乐平台，那就赶快注册一个吧！</p>
+                <div class="button1">
+                    <a href="{% url 'register' %}"><input type="submit" name="Submit" value="注册"></a>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="col_1_of_login span_1_of_login">
+                <div class="login-title">
+                    <h4 class="title">用户登陆</h4>
+                    <div id="loginbox" class="loginbox">
+                        <form action="{% url 'login' %}" method="post" name="login" id="login-form">
+                            <fieldset class="input">
+
+{#                                <p id="login-form-username">#}
+{#                                    <label class="tpass-label tpass-label-phone">手机号</label>#}
+{#                                    {{ login_form.user_phone }}#}
+{#                                </p>#}
+{##}
+{#                                <p id="login-form-password">#}
+{#                                    <label class="tpass-label tpass-label-phone">密码</label>#}
+{#                                    {{ login_form.pwd }}#}
+{#                                </p>#}
+                                <p class="tpass-form-item">
+                                    <label class="tpass-label tpass-label-phone">手机号</label>
+                                    <input type="text" name="phone" class="tpass-text-input" placeholder="用于登录和找回密码" autocomplete="off" maxlength="11" n-type="phone" a-type="focus" />
+                                    <span class="tpass-item-error tpass-item-error-phone"></span>
+{#                                    {{ login_form.user_phone }}#}
+{#                                    {{ login_form.user_phone.error_messages }}#}
+                                </p>
+                                <p class="tpass-form-item">
+                                    <label class="tpass-label tpass-label-password">密码</label>
+                                    <input type="password" name="password" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off" n-type="password" a-type="focus" />
+{#                                      {{ login_form.pwd }}#}
+{#                                      {{ login_form.pwd.error_messages }}#}
+                                </p>
+                                <div class="remember">
+                                    <p id="login-form-remember">
+                                        <label for="modlgn_remember"><a href="#">忘记密码 </a></label>
+                                    </p>
+                                    <h1>{{ error }}</h1>
+                                    <input type="submit" name="Submit" class="button" value="登陆">
+                                    <div class="clear"></div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'music_list.html' %}
+{% load static %}
+
+{% block title %}
+    {{ singer.singer_name }}
+{% endblock %}
+
+{% block head_music_list %}
+    <style>
+        .singer_pic img{
+            margin-top: 50px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .singer_msg{
+            width:1200px;
+            height:320px;
+            margin: 40px auto 10px;
+        }
+        .singer_pic{
+            float: left;
+        }
+        .singer_text p{
+            margin-top: 30px;
+            width: 75%;
+            float: right;
+            margin-left: 8px;
+            margin-right: 24px;
+            text-align: justify;
+        }
+    </style>
+{% endblock %}
+{% block private_music_list %}
+    <div class="singer_msg">
+        <div class="singer_pic"><img width="100px" src="{% static singer.singer_pic %}"></div>
+        <div class="singer_text"><p>{{ singer.singer_text }}</p></div>
+    </div>
+{% endblock %}

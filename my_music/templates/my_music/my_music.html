@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/music_list.css' %}">
+    <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
+
+
+{% endblock %}
+
+{#    start mod_profile#}
+{% block main %}
+    {% if user.user_id %}
+          <div class="mod_profile" style="">
+        <div class="section_inner">
+            <div class="profile__cover_link">
+                <img src="{% static user.image  %}">
+            </div>
+            <h1 class="profile__tit">
+            <span class="profile__name">海螺音乐</span>
+            </h1>
+            <ul class="mod_user_statistic">
+                <li class="user_statistic__item">
+                    <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+                </li>
+                <li>
+                    <a href="javascript:;"><strong>0</strong><span>粉丝</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="song">
+        <div class="song_top">
+            <a class="my_like" href="{% url 'my_music:my_music' %}">我喜欢</a>
+            <a class="my_like" href="{% url 'my_music:sheet' %}">我创建的歌单</a>
+        </div>
+        <div class="like_box">
+{#            <div class="song_like">#}
+{#                <a class="gequ" href="#">歌曲</a>#}
+{#                <a class="zhuanji" href="#">专辑</a>#}
+{#            </div>#}
+
+            <div class="mod_songlist_toolbar">
+                <a href="#" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
+                <a href="#" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
+                <a href="#" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
+                <a href="#" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
+            </div>
+            {% block content %}
+                <div class="music_list">
+                    <div class="list_header">
+                        <ul>
+                            <li class="li_music"><label >歌曲</label></li>
+                            <li class="li_singer"><label >歌手</label></li>
+                            <li class="li_album"><label >专辑</label></li>
+                            <li class="li_time"><label >时长</label></li>
+                        </ul>
+                    </div>
+                    <div class="list_content">
+                        {% for music in music_list %}
+                            <div class="rows">
+                                <ul>
+                                    <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>
+                                    <li><div class="singer"><a >{{ music.singer }}</a></div></li>
+                                    <li><div class="album"><a>{{ music.music_name | default:'无名'}}</a></div></li>
+                                    <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>
+                                </ul>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="mod_page_nav"><strong class="current">1</strong>
+                        <a href="" class="js_pageindex" data-index="2" hidefocus="">2</a>
+                        <a href="" class="js_pageindex" data-index="3" hidefocus="">3</a>
+                        <a href="" class="js_pageindex" data-index="4" hidefocus="">4</a><strong class="more">...</strong>
+                        <a href="" class="js_pageindex" data-index="19" hidefocus="">19</a>
+                        <a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span>&gt;</span></a>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+
+    </div>
+    {% else %}
+        <div class="login_bck">
+            <div class="login_box">
+                <h1 align="center" class="login_bt">私人音乐空间，听我想听的歌</h1>
+                <h4 align="center" class="login_me">登录我的音乐</h4>
+                <a href="{% url 'login' %}">
+                    <button class="login_butt" >立即登录</button>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+
+

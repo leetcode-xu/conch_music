@@ -1,0 +1,17 @@
+{
+  "name": "jQuery-carouselFigure",
+  "title": "jQuery-carouselFigure",
+  "description": "...",
+  "keywords": ["jquery", "plugins"],
+  "version": "0.0.1",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/mit-license.php"
+    }
+  ],
+  "download": "https://github.com/975156298/carouselFigure.git", // download url
+  "dependencies": {
+    "jquery": ">=3.2.1"
+  }
+}

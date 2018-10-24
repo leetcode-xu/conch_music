@@ -1,0 +1,283 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <title>{% block title %}Base{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+        <link type="images/x-icon" rel="shortcut icon" href="{% static 'images/logo3.ico' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/slider.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jQuery-carouselFigure.min.css' %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/myaudio.css' %}">
+        {% block head %}
+        {% endblock %}
+        <style>
+            .login_img{
+                margin: 20px 10px 0 0;
+                width: 50px;
+                height: 50px;
+                border: white solid 2px;
+                overflow: hidden;
+                border-radius: 50%;
+            }
+            a:hover{
+                cursor: pointer ;
+            }
+
+        </style>
+
+{#        {% block public_music_list %}#}
+{#        {% endblock %}#}
+
+        <!---start-login-script--->
+	</head>
+    <body>
+        <div class="header_bg">
+			<div class="wrap">
+				<div class="header">
+					<div class="logo">
+						<a href="{% url 'index' %}" style="float: left ;">
+							<img src="{% static 'images/logo4.jpg' %}" width="60px" height="60px" alt="" />
+						</a>
+					</div>
+					<a href="#">
+						<h3>海螺音乐 </h3></a>
+					<!--<div class="social-icons">-->
+					<div class="sign-ligin-btns">
+						<ul>
+							<li id="loginContainer">
+								{% if user.user_id %}
+                                    <a href="{% url 'my_music:my_music' %}" class="login" id="loginLabel" >
+                                        <img class="login_img" src="{% static user.image %}">
+                                    </a>
+                                {% else %}
+                                    <a class="login" id="loginButton" href="{% url 'login' %}"><span>登录</span></a>
+								{% endif %}
+                                <div class="clear"></div>
+								<!-- Login Ends Here -->
+							</li>
+							<li id="signupContainer">
+								{% if user.user_id %}
+                                    <a class="signup" id="signupButton" href="{% url 'logout' %}"><span>注销</span></a>
+                                {% else %}
+                                    <a class="signup" id="signupButton" href="{% url 'register' %}"><span>注册</span></a>
+                                {% endif %}
+								<div class="clear"> </div>
+								<!-- Login Ends Here -->
+							</li>
+{#							<div class="clear"> </div>#}
+						</ul>
+					</div>
+					<div class="clear"> </div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<!-- start header -->
+
+		<div class="header_btm">
+			<div class="wrap">
+				<div class="header_sub">
+					<div class="h_menu">
+						<ul>
+							<li class="active">
+								<a href="{% url 'index' %}">发现</a>
+							</li>
+							<li>
+								<a href="{% url 'my_music:my_music' %}">我的音乐</a>
+							</li>
+							<li>
+								<a href="{% url 'client:client' %}">客户端</a>
+							</li>
+							<li>
+                                <a href="https://uland.taobao.com/sem/tbsearch?refpid=mm_26632258_3504122_32538762&clk1=09fc198b3e4407582d87b834bea2e066&keyword=%E8%80%B3%E6%9C%BA&page=0">商城</a>
+							</li>
+							<li>
+								<a href="{% url 'member:member' %}">VIP</a>
+							</li>
+						</ul>
+					</div>
+					<div class="h_search">
+						<form action="{% url 'search' %}" method="get" >
+							<input type="text" name="search" placeholder="search music" required="required">
+							<input type="submit" value="">
+						</form>
+					</div>
+					<div class="sub-head">
+						<ul>
+							<li>
+								<a href="#" id="menu">Menu <span></span></a>
+							</li>
+							<li>
+								<a href="#" id="search">Search <span></span></a>
+							</li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<script type="text/javascript">
+						$(".menu,.search").hide();
+						$("#menu").click(function() {
+							$(".menu").toggle();
+							$(".search").hide();
+							$("#search").removeClass("active");
+							$("#menu").toggleClass("active");
+						});
+						$("#search").click(function() {
+							$(".search").toggle();
+							$(".menu").hide();
+							$("#menu").removeClass("active");
+							$("#search").toggleClass("active");
+							$(".text").focus();
+						});
+					</script>
+					<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+					<div class="clear"></div>
+
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+
+        {% block main %}
+{#        <!--      在这里重写自己的内容    >#}
+
+        {% endblock %}
+{#        <div class = "hide">#}
+{#            <div class="auto_player"></div>#}
+{#            <div class="audio" style="position: fixed;left: 15%;bottom: 0;"></div>#}
+{#            <script type="text/javascript" src="{% static 'js/audio.js'%}"></script>#}
+{#        </div>#}
+        <div class="channel">
+            <div class="menu-bar">
+                <div class="pre"></div>
+                <div class="audio_play"></div>
+                <div class="next"></div>
+            </div>
+            <div class="progress-bar">
+                <span class="progress-span1">00:00</span>
+                <div class="progress"></div>
+                <div cla="--"></div>
+                <div class="progress-btn"></div>
+                <span class="progress-span2">00:00</span>
+            </div>
+            <div class="volume-bar">
+                <div class="volume-btn"></div>
+                <div class="volume-btn-mobile"></div>
+                <div class="volume-progress"></div>
+                <div class="volume-runaway"></div>
+            </div>
+        </div>
+        <audio id="audio"></audio>
+        <script type="text/javascript" src="{% static 'js/myaudio.js' %}"></script>
+		<!-- start footer -->
+        <div class="footer_bg">
+			<div class="wrap">
+				<div class="footer">
+					<!-- start span_of_4 -->
+					<div class="span_of_4">
+						<div class="span1_of_4">
+							<h4>开发过程</h4>
+							<p>通过不断地开发，每个小组成员所负责的部分已经设计完成和部分已经实现</p>
+							<ul class="f_nav1">
+								<li class="timer">
+									<a href="#">9-october 2018 </a>
+								</li>
+							</ul>
+							<p class="top">未开发完,待定</p>
+							<ul class="f_nav1">
+								<li class="timer">
+									<a href="#">9-october 2018 </a>
+								</li>
+							</ul>
+						</div>
+						<div class="span1_of_4">
+							<h4>介绍</h4>
+							<p>整体主要采用html css js技术来实现，html来实现静态页面，css对静态页面进行修饰，用javascript来实现轮播图，登陆，注册，播放进度条等，未完待续！</p>
+						</div>
+						<div class="span1_of_4">
+							<h4>关于我们</h4>
+							<p class="btm">这是一个优秀的团队出产的作品，每一个成员都起到了不可替代的作用</p>
+							<p>由于开发时间的限制，有的部分还不太完美，后续的部分将会逐渐完善</p>
+
+						</div>
+						<div class="span1_of_4">
+							<h4>保持联系</h4>
+							<p class="btm">我们的公司一直欢迎合作伙伴的加盟,同时也欢迎有实力，有志向的伙伴加入我们</p>
+							<p class="btm1 pin">北京市大兴区</p>
+							<p class="btm1 mail">
+								<a href="mailto:info@mycompany.com">公司邮箱</a>
+							</p>
+							<p class="call">01234 444 777</p>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- start footer -->
+		<div class="footer_bg1">
+			<div class="wrap">
+				<div class="footer1">
+					<!-- scroll_top_btn -->
+					<a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+					<!--end scroll_top_btn -->
+
+					<div class="footer2">
+						<p align="center" style="color: darkgray;">
+							<a href="http://www.tencent.com/" rel="noopener nofollow" target="_blank" title="关于吴彦组">关于吴彦组</a> |
+							<a href="http://www.tencent.com/index_e.shtml" rel="noopener nofollow" target="_blank" title="About Tencent">About Tencent</a> |
+							<a href="http://www.qq.com/contract.shtml" rel="noopener nofollow" target="_blank" title="服务条款">服务条款</a> |
+							<a href="http://y.qq.com/y/static/tips/service_tips.html" rel="noopener nofollow" target="_blank" title="用户服务协议">用户服务协议</a> |
+							<a href="https://y.qq.com/m/client/intro/privacy.html" rel="noopener nofollow" target="_blank" title="隐私政策">隐私政策</a> |
+							<a href="https://y.qq.com/vip/right_declare/index.html" rel="noopener nofollow" target="_blank" title="权利声明">权利声明</a> |
+							<a href="http://www.tencentmind.com/" rel="noopener nofollow " target="_blank " title="广告服务 ">广告服务</a> |
+								<a href="http://hr.tencent.com/ " rel="noopener nofollow " target="_blank " title="吴彦组招聘 ">吴彦组招聘</a> |
+								<a href="http://service.qq.com/ " rel="noopener nofollow " target="_blank " title="客服中心 ">客服中心</a> |
+								<a href="http://www.qq.com/map/ " rel="noopener nofollow " target="_blank " title="网站导航 ">网站导航</a>
+							</p>
+                            <p align="center " style="color: grey; ">Copyright © 1998 - <script type="text/javascript ">document.write(new Date().getFullYear());</script>2018 Tencent.
+                            	<a target="_blank " href="http://www.tencent.com/en-us/le/copyrightstatement.shtml " rel="noopener nofollow " title="All Rights Reserved. ">All Rights Reserved.</a></p>
+	                        <p align="center " style="color: darkgrey; ">吴彦祖公司 <a  target="_blank " href="http://www.tencent.com/zh-cn/le/copyrightstatement.shtml " rel="noopener nofollow " title="版权所有 ">
+	                        	版权所有</a> <a target="_blank " href="http://www.tencent.com/law/mo_law.shtml?/law/copyright.htm " rel="noopener nofollow " title="吴彦祖文化经营许可证 ">吴彦组文化经营许可证</a></p>
+					</div>
+					<div class="clear "></div>
+				</div>
+			</div>
+		</div>
+        <!---//End-login-script--->
+        <!---strat-slider---->
+        <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/modernizr.custom.28468.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.cslider.js' %}"></script>
+        <script type="text/javascript">
+            $(function() {
+
+                $('#da-slider').cslider({
+                    autoplay: true,
+                    bgincrement: 450
+                });
+
+            });
+        </script>
+{#        音乐播放#}
+
+        <!---//strat-slider---->
+
+        <!-- start top_js_button -->
+        <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event) {
+                    event.preventDefault();
+                    $('html,body').animate({
+                        scrollTop: $(this.hash).offset().top
+                    }, 1200);
+                });
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    海螺音乐
+{% endblock %}
+{% block head %}
+{% endblock %}
+
+
+{% block main %}
+{#		<!-- start slider -->#}
+{#		<div class="slider_bg">#}
+{#			<div class="wrap">#}
+{#				<div class="slider">#}
+{#					<!---start-da-slider----->#}
+{#					<div id="da-slider" class="da-slider">#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/366047.jpg' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/366274.jpg' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/366048.png' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/1.png' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/2.png' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/3.png' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{#						<div class="da-slide">#}
+{#							<h2><img src="{% static 'images/4.png' %}"></h2>#}
+{#							<p></p>#}
+{#						</div>#}
+{##}
+{#						<nav class="da-arrows">#}
+{#							<span class="da-arrows-prev"></span>#}
+{#							<span class="da-arrows-next"></span>#}
+{#						</nav>#}
+{#					</div>#}
+{#					<!---//End-da-slider----->#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
+    <div id="warp" class="warp"></div>
+    <script type="text/javascript" src={% static "js/jquery-3.2.1.min.js"%}></script>
+    <script type="text/javascript" src={% static "js/jQuery-carouselFigure.min.js"%}></script>
+    <script type="text/javascript">
+        $('#warp').carouselFigure([{% static "images/1.png" %},{% static "images/2.png" %},{% static "images/3.png" %}],true);
+    </script>
+
+		<!-- start main_bg -->
+		<!--<div class="main_bg">-->
+			<!--<div class="wrap">-->
+				<!--<div class="main content_top">-->
+					<!--&lt;!&ndash; start span_of_3 &ndash;&gt;-->
+					<!--<div class="span_of_3">-->
+                        <!--{% for r in recommend_list %}-->
+                            <!--<a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>-->
+							<!--<div class="span1_of_3_text">-->
+								<!--<h5><a href="singer_details.html">一代芳华&#45;&#45;{{ r.singer_name }}</a></h5>-->
+<!--{#								<p align="center">张靓颖</p>#}-->
+							<!--</div>-->
+                        <!--{% endfor %}-->
+						<!--<div class="clear"></div>-->
+					<!--</div>-->
+
+
+		<div class="main_bg">
+			<div class="wrap">
+				<div class="main content_top" style="text-align: center;">
+					<h2 class="singertj">歌&nbsp;手&nbsp;推&nbsp;荐</h2>>
+					<!-- start span_of_3 -->
+					<div class="span_of_3">
+						<ul class="playlist__list" style="text-align: center">
+							{% for r in recommend_list %}
+                                <li class="playlist__item slide__item" style="float: left;">
+                                    <div class="playlist__item_box" style="border: 1px solid gray;">
+                                        <div class="playlist__cover">
+                                            <a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>
+                                        </div>
+                                        <div class="span1_of_3_text">
+                                            <h5><a href="singer_details.html">{{ r.singer_name }}</a></h5>
+                                            <!--<h5><a href="details.html">成人书.赝品</a></h5>-->
+                                            <!--<p> <h5><a href="">简宏亦</a></h5></p>-->
+                                        </div>
+                                    </div>
+                                </li>
+							{% endfor %}
+
+
+
+						</ul>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- start main -->
+		<div class="wrap1">
+			<div class="main content_top">
+				<div class="main">
+					<div class="main_text">
+						<h2><span>排&nbsp;&nbsp;&nbsp;行&nbsp;&nbsp;&nbsp;榜 </span> </h2>
+						<p class="para"></p>
+						<!-- start grids_of_3 -->
+						<div class="grids_of_3">
+							<div class="grid1_of_3_1">
+								<div class="grid1_of_3_1_top">
+									<h4>巅&nbsp;峰&nbsp;榜<br><span>流&nbsp;行&nbsp;指&nbsp;数</span></h4>
+									<div class="grid1_of_3_1_sing">
+										<p><b>1.</b>&nbsp;&nbsp;Give Me A Chance</p>
+									</div>
+								</div>
+							</div>
+							<div class="grid1_of_3_3">
+								<div class="grid1_of_3_1_top">
+									<h4>巅&nbsp;峰&nbsp;榜 <br><span>热歌 </span></h4>
+								<p></p>
+								</div>
+							</div>
+							<div class="grid1_of_3_2">
+								<div class="grid1_of_3_1_top">
+								<h4>巅&nbsp;峰&nbsp;榜<br><span></span>新歌</h4>
+								<p></p>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<!-- end grids_of_3 -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+{#		<!--start wrap-->#}
+{#		<div class="wrap">#}
+{#			<ul id="flexiselDemo3">#}
+{#				<li><img src="{% static 'images/pic1.jpg' %}" /></li>#}
+{#				<li><img src="{% static 'images/pic2.jpg' %}" /></li>#}
+{#				<li><img src="{% static 'images/pic3.jpg' %}" /></li>#}
+{#				<li><img src="{% static 'images/pic4.jpg' %}" /></li>#}
+{#				<li><img src="{% static 'images/pic5.jpg' %}" /></li>#}
+{#				<li><img src="{% static 'images/pic6.jpg' %}" /></li>#}
+{#			</ul>#}
+{#			<script type="text/javascript">#}
+{#				$(window).load(function() {#}
+{#					$("#flexiselDemo1").flexisel();#}
+{#					$("#flexiselDemo2").flexisel({#}
+{#						enableResponsiveBreakpoints: true,#}
+{#						responsiveBreakpoints: {#}
+{#							portrait: {#}
+{#								changePoint: 480,#}
+{#								visibleItems: 1#}
+{#							},#}
+{#							landscape: {#}
+{#								changePoint: 640,#}
+{#								visibleItems: 2#}
+{#							},#}
+{#							tablet: {#}
+{#								changePoint: 768,#}
+{#								visibleItems: 3#}
+{#							}#}
+{#						}#}
+{#					});#}
+{##}
+{#					$("#flexiselDemo3").flexisel({#}
+{#						visibleItems: 5,#}
+{#						animationSpeed: 1000,#}
+{#						autoPlay: true,#}
+{#						autoPlaySpeed: 3000,#}
+{#						pauseOnHover: true,#}
+{#						enableResponsiveBreakpoints: true,#}
+{#						responsiveBreakpoints: {#}
+{#							portrait: {#}
+{#								changePoint: 480,#}
+{#								visibleItems: 1#}
+{#							},#}
+{#							landscape: {#}
+{#								changePoint: 640,#}
+{#								visibleItems: 2#}
+{#							},#}
+{#							tablet: {#}
+{#								changePoint: 768,#}
+{#								visibleItems: 3#}
+{#							}#}
+{#						}#}
+{#					});#}
+{##}
+{#				});#}
+{#			</script>#}
+{#			<script type="text/javascript" src="{% static 'js/jquery.flexisel.js' %}"></script>#}
+{#		</div>#}
+
+{% endblock %}
