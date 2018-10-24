@@ -23,6 +23,10 @@ def do_login(request):
                 request.session['user_id'] = user[0].user_id
                 request.session['user_nickname'] = user[0].user_nickname
                 request.session['image'] = user[0].image
+                # print(request.session.get('previous_page'))
+                # print('sdfdsf')
+                if request.session.get('previous_page', '/') == 'http://localhost:8000/register/':
+                    return redirect('/')
                 return redirect(request.session.get('previous_page','/'))
             else:
                 return render(request, 'discover/login.html', {'login_form':login_form, 'error': '用户名密码不一致'})

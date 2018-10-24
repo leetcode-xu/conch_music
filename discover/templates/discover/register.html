@@ -112,29 +112,36 @@
             }
         </style>
         <div id="register" class="t_register">
-			<div class="form-wrapper register-wrapper" style="margin-left: 30%;border: 1px solid #eeeeee; width: 40%;">
+			<form method="post" action="{% url 'register' %}">
+                <div class="form-wrapper register-wrapper" style="margin-left: 30%;border: 1px solid #eeeeee; width: 40%;">
 				<p class="tpass-form-item">
 					<label class="tpass-label tpass-label-phone">手机号</label>
-					<input type="text" name="phone" class="tpass-text-input" placeholder="用于登录和找回密码" autocomplete="off" maxlength="11" n-type="phone" a-type="focus" />
-					<span class="tpass-item-error tpass-item-error-phone"></span>
+{#					<input type="text" name="phone" class="tpass-text-input" placeholder="用于登录和找回密码" autocomplete="off" maxlength="11" n-type="phone" a-type="focus" />#}
+					{{ register_form.user_phone }}
+                    <span class="tpass-item-error tpass-item-error-phone">{{ register_form.user_phone.error_messages }}</span>
 				</p>
 				<p class="tpass-form-item">
 					<label class="tpass-label tpass-label-password">密码</label>
-					<input type="password" name="password" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off" n-type="password" a-type="focus" />
+{#					<input type="password" name="password" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off" n-type="password" a-type="focus" />#}
+                    {{ register_form.pwd }}
+                    {{ register_form.pwd.error_messages }}
 				</p>
                 <p class="tpass-form-item">
                     <label class="tpass-label tpass-label-password">确认密码</label>
-                     <input type="password" name="password" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off" n-type="password" a-type="focus" />
+{#                     <input type="password" name="password" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off" n-type="password" a-type="focus" />#}
+                    {{ register_form.re_pwd }}
+                    {{ register_form.re_pwd.error_messages }}
 				</p>
 				<p class="tpass-form-item tpass-form-item-isAgree">
 					<input name="isAgree" type="checkbox" checked="checked" class="tpass-checkbox-input tpass-checkbox-isAgree" autocomplete="off" n-type="isAgree" />
 					<label>阅读并同意<a href="#" target="_blank">太合用户注册协议</a></label>
 				</p>
 				<p class="tpass-form-item tpass-form-item-submit" style="padding-left: 96px;">
-					<input type="submit" value="注册" class="tpass-button tpass-button-submit" a-type="submit" n-type="submit">
-					<span class="tpass-item-error tpass-item-error-submit"></span>
+					<input type="submit" value="注册" class="tpass-button tpass-button-submit">
+					<span class="tpass-item-error tpass-item-error-submit">{{ error }}</span>
 				</p>
 			</div>
+            </form>
 		</div>
 
     {% endif %}
