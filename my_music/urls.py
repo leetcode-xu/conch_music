@@ -20,7 +20,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.my_music, name='my_music'),
     url(r'^attention/$', views.attention, name='attention'),
-    url(r'^sheet/$', views.sheet, name='sheet')
+    url(r'^fans/$', views.fans, name='fans'),
+    url(r'focus_user/$',views.focus_user, name='focus_user')
 ]
 
 
