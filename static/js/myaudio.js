@@ -195,7 +195,6 @@ $(function () {
         Audio.audio.currentIndex = 0;
         Audio.audio.src = Audio.srcs[Audio.currentIndex];
         Audio.audio.play();
-        alert(musicPath);
     })
 });
 
