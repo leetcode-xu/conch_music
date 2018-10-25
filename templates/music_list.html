@@ -42,7 +42,7 @@
                                 <a class="music_a">{{ music.music_name }}</a>
                                 <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
                                 <div class="add"><a class="add_a"></a></div>
-                                <div class="play"><a class="play_a" data-music_path="{{ music.music_path }}"></a></div>
+                                <div class="play" data-music_path="{{ music.music_path }}"><a class="play_a"></a></div>
                             </div>
                         </li>
                         <li><div class="singer"><label>{{ music.singer }}</label></div></li>
