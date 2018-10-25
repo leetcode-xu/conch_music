@@ -5,14 +5,50 @@
 
 
 $(function () {
+    Audio = {
+        audio: $('#audio')[0],
+        srcs: ['../../static/music/周杰伦/青花瓷.mp3', '../../static/music/周杰伦/告白气球.mp3'],
+        currentIndex: 0,
 
-    function preloadAudioState(){
-        audio = $('#audio')[0];
-        // alert(audio.duration);
-        audio.src("{% static 'music/周杰伦/告白气球.mp3' %}");
-        // $('.progress-span2').html('sdf');
-    }
-    preloadAudioState();
+    };
+
+    Audio.audio.oncanplay = function () {
+        time = parseInt(Audio.audio.duration);
+        minute = parseInt(time / 60);
+        if(minute<10) minute = '0' + minute;
+        second = time - minute * 60;
+        if(second<10) second = '0' + second;
+        $('.progress-span2').html(minute+ ':' + second)
+    };
+
+
+    $('.next').click(function () {
+        that = Audio
+        targetIndex = that.currentIndex + 1
+        that.currentIndex = targetIndex > that.srcs.length -1 ? 0 : targetIndex;
+        that.audio.src = that.srcs[targetIndex]
+        that.audio.play()
+    });
+    
+    $('.pre').click(function () {
+        that = Audio
+        targetIndex = that.currentIndex - 1
+        that.currentIndex = targetIndex < 0 ? 0 : targetIndex;
+        that.audio.src = that.srcs[targetIndex]
+        that.audio.play()
+    })
+
+    setInterval(function () {
+        span = $('.progress-span1');
+        time = parseInt(Audio.audio.currentTime);
+        minute = parseInt(time / 60);
+        if(minute<10) minute = '0' + minute;
+        second = time - minute * 60;
+        if(second<10) second = '0' + second;
+        span.html(minute+ ':' + second);
+    }, 1000);
+
+    $('.progress-span2')
 
     $('.rows').mouseover(function (e) {
         $(this).find('.download_a').css('display','block');
@@ -50,37 +86,88 @@ $(function () {
     //     $('#audio')[0].play();
     //
     // });
-    dragProgressMove(".progress-btn", ".progress-btn", '.progress', 0);
+    isMove = false;  //当为true 是  移动事件被监听
+    isWho = false;  // 当为false时  执行音量函数   当为true时,执行进度条函数.
+
+    $('.progress-btn').mousedown(function () {
+        isMove = true
+        isWho = true
+
+    });
+
+    // $('.progress-btn').mouseup(function () {
+    //     isMove = false
+    // });
 
 
-    function dragProgressMove(downDiv, moveDiv, progress, flag) {
-        beginLocation = $(moveDiv).offset().left - $('.channel').offset().left;
-        endLocation = $(progress).outerWidth() + beginLocation;
-        $(downDiv).mousedown(function (e) {
-            channelWidth = $('.channel').offset().left;
-            currentLocation = $(moveDiv).offset().left - channelWidth;
-            //bug  开始结束位置应该固定不应该每次改变
-            var isMove = true;
-            // alert($(moveDiv).css('left'));
-            // alert($(moveDiv).offset().left);
-            var div_x = e.pageX - currentLocation;
-            // alert(div_x);
-            $(document).mousemove(function (e) {
-                if (!flag){
-                    if (isMove && beginLocation <= e.pageX - div_x && endLocation > e.pageX - div_x) {
-                        var obj = $('.progress-btn');
-                        currentLocation = $(moveDiv).offset().left - channelWidth;
-                        $('.progress-runaway').css('width', currentLocation - beginLocation);
-                        obj.css({"left": e.pageX - div_x});
-                        $('.progress-span2').html(e.pageX - div_x)
-                     }
+    $('.volume-btn-mobile').mousedown(function () {
+        isMove = true
+        isWho = false
+    });
+    //
+    // $('.volume-btn-mobile').mouseup(function () {
+    //     isMove = false
+    // })
+     var beginProgressLocation = $('.progress-btn').offset().left - $('.channel').offset().left;
+     var endProgressLocation = $('.progress').outerWidth() + beginLocation;
+     var beginVolumeLocation = $('.volume-btn-mobile').offset().left - $('.channel').offset().left;
+     $(document).mousemove(function (e) {
+        if (isMove){
+            if (isWho) {  //&& beginLocation <= e.pageX - div_x && endLocation > e.pageX - div_x
+                // var obj = $('.progress-btn');
+                // currentLocation = $(moveDiv).offset().left - channelWidth;
+                // $('.progress-runaway').css('width', currentLocation - beginLocation);
+                // obj.css({"left": e.pageX - div_x});
+                // $('.progress-span2').html(e.pageX)
+                channelWidth = $('.channel').offset().left;
+                currentLocation = e.pageX- channelWidth;
+                var len = currentLocation - beginLocation;  // - ;
+                if (currentLocation > beginLocation && currentLocation < endLocation) {
+                    $('.progress-btn').css('left', currentLocation);
+                    $('.progress-runaway').css('width', len);
                 }
-            }).mouseup(
-                function () {
-                    isMove = false;
-                });
-        });
-    }
+            }
+            //if (!isWho && )
+            else{
+
+            }
+
+        }
+    }).mouseup(function () {
+         isMove = false
+     })
+
+    // dragProgressMove(".progress-btn", ".progress-btn", '.progress', 0);
+
+
+    // function dragProgressMove(downDiv, moveDiv, progress, flag) {
+    //     beginLocation = $(moveDiv).offset().left - $('.channel').offset().left;
+    //     endLocation = $(progress).outerWidth() + beginLocation;
+    //     $(downDiv).mousedown(function (e) {
+    //         channelWidth = $('.channel').offset().left;
+    //         currentLocation = $(moveDiv).offset().left - channelWidth;
+    //         //bug  开始结束位置应该固定不应该每次改变
+    //         var isMove = true;
+    //         // alert($(moveDiv).css('left'));
+    //         // alert($(moveDiv).offset().left);
+    //         var div_x = e.pageX - currentLocation;
+    //         // alert(div_x);
+    //         $(document).mousemove(function (e) {
+    //             if (!flag){
+    //                 if (isMove && beginLocation <= e.pageX - div_x && endLocation > e.pageX - div_x) {
+    //                     var obj = $('.progress-btn');
+    //                     currentLocation = $(moveDiv).offset().left - channelWidth;
+    //                     $('.progress-runaway').css('width', currentLocation - beginLocation);
+    //                     obj.css({"left": e.pageX - div_x});
+    //                     $('.progress-span2').html(e.pageX - div_x)
+    //                  }
+    //             }
+    //         }).mouseup(
+    //             function () {
+    //                 isMove = false;
+    //             });
+    //     });
+    // }
 
 
 

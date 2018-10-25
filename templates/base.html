@@ -12,8 +12,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/myaudio.css' %}">
         <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/modernizr.custom.28468.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/jquery.cslider.js' %}"></script>
         {% block head %}
         {% endblock %}
         <style>
@@ -173,7 +171,7 @@
                 <div class="volume-runaway"></div>
             </div>
         </div>
-        <audio id="audio" controls = 'controls' autoplay src="{% static 'music/周杰伦/青花瓷.mp3' %}">
+        <audio id="audio"  controls="controls" autoplay src="{% static 'music/周杰伦/青花瓷.mp3' %}">
         </audio>
         <script type="text/javascript" src="{% static 'js/myaudio.js' %}"></script>
 		<!-- start footer -->
@@ -253,32 +251,32 @@
 		</div>
         <!---//End-login-script--->
         <!---strat-slider---->
-        <script type="text/javascript">
-            $(function() {
-
-                $('#da-slider').cslider({
-                    autoplay: true,
-                    bgincrement: 450
-                });
-
-            });
-        </script>
+{#        <script type="text/javascript">#}
+{#            $(function() {#}
+{##}
+{#                $('#da-slider').cslider({#}
+{#                    autoplay: true,#}
+{#                    bgincrement: 450#}
+{#                });#}
+{##}
+{#            });#}
+{#        </script>#}
 {#        音乐播放#}
 
         <!---//strat-slider---->
 
         <!-- start top_js_button -->
-        <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>
-        <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>
-        <script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $(".scroll").click(function(event) {
-                    event.preventDefault();
-                    $('html,body').animate({
-                        scrollTop: $(this.hash).offset().top
-                    }, 1200);
-                });
-            });
-        </script>
+{#        <script type="text/javascript" src="{% static 'js/move-top.js' %}"></script>#}
+{#        <script type="text/javascript" src="{% static 'js/easing.js' %}"></script>#}
+{#        <script type="text/javascript">#}
+{#            jQuery(document).ready(function($) {#}
+{#                $(".scroll").click(function(event) {#}
+{#                    event.preventDefault();#}
+{#                    $('html,body').animate({#}
+{#                        scrollTop: $(this.hash).offset().top#}
+{#                    }, 1200);#}
+{#                });#}
+{#            });#}
+{#        </script>#}
     </body>
 </html>

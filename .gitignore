@@ -2,7 +2,6 @@
 
 
 .idea
-将删除 .gitignore
 将删除 .idea/
 
 static/user_pic/
@@ -11,7 +10,6 @@ static/music/
 static/images
 .project
 *.pyc
-
 
 将删除 client/__pycache__/
 将删除 client/migrations/__pycache__/
