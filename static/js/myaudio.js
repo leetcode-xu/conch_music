@@ -105,17 +105,6 @@ $(function () {
         }
     })
 
-    $('.rows').mouseover(function (e) {
-        $(this).find('.download_a').css('display', 'block');
-        $(this).find('.add_a').css('display', 'block');
-        $(this).find('.play_a').css('display', 'block');
-    });
-
-    $('.rows').mouseout(function (e) {
-        $(this).find('.download_a').css('display', 'none');
-        $(this).find('.add_a').css('display', 'none');
-        $(this).find('.play_a').css('display', 'none');
-    });
 
     $('.audio_play').click(function () {
         $(this).toggleClass('audio_play');

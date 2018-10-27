@@ -3,5 +3,5 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.player, name='player')
+    url(r'^(?P<list_id>\d*)', views.player, name='player')
 ]
