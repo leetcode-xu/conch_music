@@ -18,7 +18,7 @@ $(function () {
     $('.volume-btn').click(function () {
         $(this).toggleClass('volume-btn');
         $(this).toggleClass('volume-btn-mute');
-        Audio.audio.volume = Audio.audio.volume ^ volume
+        Audio.audio.volume = Audio.audio.volume ? 0 : volume;
     });
 
 
@@ -73,30 +73,37 @@ $(function () {
         span.html(minute + ':' + second);
     }, 100);
 
-    // 点击进度条跳转到对应播放时间
-    $('.progress').click(function (e) {
-        let channelProgressWidth = $('.channel').offset().left;
-        let currentProgressLocation = e.pageX - channelProgressWidth;
-        let progressLength = currentProgressLocation - beginProgressLocation;  // - ;
-        if (currentProgressLocation >= beginProgressLocation && currentProgressLocation <= endProgressLocation) {
-            $('.progress-btn').css('left', currentProgressLocation);
-            $('.progress-runaway').css('width', progressLength);
-            let currentRunWidth = $('.progress-runaway').outerWidth();
-            Audio.audio.currentTime = currentRunWidth / $('.progress').outerWidth() * Audio.audio.duration;
-        }
-    });
-    $('.progress-runaway').click(function (e) {
-        let channelProgressWidth = $('.channel').offset().left;
-        let currentProgressLocation = e.pageX - channelProgressWidth;
-        let progressLength = currentProgressLocation - beginProgressLocation;  // - ;
-        if (currentProgressLocation >= beginProgressLocation && currentProgressLocation <= endProgressLocation) {
-            $('.progress-btn').css('left', currentProgressLocation);
-            $(this).css('width', progressLength);
-            let currentRunWidth = $('.progress-runaway').outerWidth();
-            Audio.audio.currentTime = currentRunWidth / $('.progress').outerWidth() * Audio.audio.duration;
-        }
-    });
 
+
+    // 点击音量进度条减少音量
+
+    $('.volume-runaway').click(function (e) {
+        let channelVolumeWidth = $('.channel').offset().left;
+        let currentVolumeLocation = e.pageX - channelVolumeWidth;
+        let volumeLength = currentVolumeLocation - beginVolumeLocation;
+        if (currentVolumeLocation >= beginVolumeLocation && currentVolumeLocation <= endVolumeLocation) {
+            $('.volume-btn-mobile').css('left', currentVolumeLocation);
+            $(this).css('width', volumeLength);
+            // let currentRunWidth = $('.volume-runaway').outerWidth();
+            Audio.audio.volume = volumeLength / $('.volume-progress').outerWidth()
+            volume = Audio.audio.volume;
+        }
+    })
+
+    // 点击音量进度条增加音量
+
+    $('.volume-progress').click(function (e) {
+        let channelVolumeWidth = $('.channel').offset().left;
+        let currentVolumeLocation = e.pageX - channelVolumeWidth;
+        let volumeLength = currentVolumeLocation - beginVolumeLocation;
+        if (currentVolumeLocation >= beginVolumeLocation && currentVolumeLocation <= endVolumeLocation) {
+            $('.volume-btn-mobile').css('left', currentVolumeLocation);
+            $('.volume-runaway').css('width', volumeLength);
+            // let currentRunWidth = $('.volume-runaway').outerWidth();
+            Audio.audio.volume = volumeLength / $('.volume-progress').outerWidth()
+            volume = Audio.audio.volume;
+        }
+    })
 
     $('.rows').mouseover(function (e) {
         $(this).find('.download_a').css('display', 'block');
@@ -121,18 +128,7 @@ $(function () {
     isMove = false;  //当为true 是  移动事件被监听
     isWho = false;  // 当为false时  执行音量函数   当为true时,执行进度条函数.
 
-    function playChangeProgress() {
-        let currentPlayTime = Audio.audio.currentTime;
-        let audioTime = Audio.audio.duration;
-        let progressLength = $('.progress').outerWidth();
-        let runawayLength = currentPlayTime / audioTime * progressLength;
-        $('.progress-runaway').css('width', runawayLength);
-        // $('.progress-span2').html(beginLeft + runawayLength);
-        $('.progress-btn').css('left', beginProgressLocation + runawayLength);
-        return currentPlayTime
-    }
 
-    var changeProgress = setInterval(playChangeProgress, 50);
 
 
     $('.progress-btn').mousedown(function () {
@@ -171,6 +167,7 @@ $(function () {
                     $('.volume-btn-mobile').css('left', currentVolumeLocation)
                     $('.volume-runaway').css('width', volumeLength);
                     Audio.audio.volume = volumeLength / (endVolumeLocation - currentVolumeLocation)
+                    volume = Audio.audio.volume
                 }
             }
 
@@ -183,7 +180,6 @@ $(function () {
         isMove = false
         changeProgress = setInterval(playChangeProgress, 50);
     });
-
 
 
     //  以下模块为正常网页点击事件 如播放,添加,下载;

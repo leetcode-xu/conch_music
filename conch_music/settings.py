@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'discover',
     'client',
     'member',
-    'my_music'
+    'my_music',
+    'player'
 
 ]
 
@@ -90,9 +91,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Conch_music',
          # 开发环境可用，生产环境不要用
-        'USER': 'music',
+        'USER': 'root',
         'PASSWORD': '123456',
-        'HOST': '10.8.44.201',
+        'HOST': '',
         # 'HOST': '',
         'PORT': '',
     }
