@@ -53,29 +53,16 @@
 {#				</div>#}
 {#			</div>#}
 {#		</div>#}
+
+
+    <script type="text/javascript" src={% static "js/jquery-1.11.3.js"%}></script>
     <div id="warp" class="warp"></div>
-    <script type="text/javascript" src={% static "js/jquery-3.2.1.min.js"%}></script>
-    <script type="text/javascript" src={% static "js/jQuery-carouselFigure.min.js"%}></script>
+    <script type="text/javascript" src={% static "js/jQuery-carouselFigure.js"%}></script>
     <script type="text/javascript">
-        $('#warp').carouselFigure([{% static "images/1.png" %},{% static "images/2.png" %},{% static "images/3.png" %}],true);
+        $('#warp').carouselFigure(['{% static "images/bgimg.jpg" %}','{% static "images/1.jpg" %}','{% static "images/bgimg2.jpg" %}','{% static "images/366274.jpg" %}'],true,3000);
     </script>
 
-		<!-- start main_bg -->
-		<!--<div class="main_bg">-->
-			<!--<div class="wrap">-->
-				<!--<div class="main content_top">-->
-					<!--&lt;!&ndash; start span_of_3 &ndash;&gt;-->
-					<!--<div class="span_of_3">-->
-                        <!--{% for r in recommend_list %}-->
-                            <!--<a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>-->
-							<!--<div class="span1_of_3_text">-->
-								<!--<h5><a href="singer_details.html">一代芳华&#45;&#45;{{ r.singer_name }}</a></h5>-->
-<!--{#								<p align="center">张靓颖</p>#}-->
-							<!--</div>-->
-                        <!--{% endfor %}-->
-						<!--<div class="clear"></div>-->
-					<!--</div>-->
-
+    
 
 		<div class="main_bg">
 			<div class="wrap">
@@ -92,17 +79,35 @@
                                         </div>
                                         <div class="span1_of_3_text">
                                             <h5><a href="singer_details.html">{{ r.singer_name }}</a></h5>
-                                            <!--<h5><a href="details.html">成人书.赝品</a></h5>-->
-                                            <!--<p> <h5><a href="">简宏亦</a></h5></p>-->
                                         </div>
                                     </div>
                                 </li>
 							{% endfor %}
-
-
-
 						</ul>
-
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="main_bg">
+			<div class="wrap" style="margin: 0 auto">
+				<div class="main content_top" style="margin: 0 auto">
+					<h2 class="singertj">歌&nbsp;曲&nbsp;推&nbsp;荐</h2>>
+					<!-- start span_of_3 -->
+					<div class="span_of_3" style="margin: 0 auto">
+						<ul class="playlist__list" style="text-align: center;margin: 0 auto">
+							{% for r in recommend_list %}
+                                <li class="playlist__item slide__item" style="float: left;">
+                                    <div class="playlist__item_box" style="border: 1px solid gray;">
+                                        <div class="playlist__cover">
+                                            <a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>
+                                        </div>
+                                        <div class="span1_of_3_text">
+                                            <h5><a href="{% url 'discover:singer' r.singer_name %}">{{ r.singer_name }}</a></h5>
+                                        </div>
+                                    </div>
+                                </li>
+							{% endfor %}
+						</ul>
 					</div>
 				</div>
 			</div>

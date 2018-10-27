@@ -9,7 +9,7 @@ ul{
     list-style: none;
 }
 .h-img-tab .tab-con{
-    height: 383px;
+    height: 400px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -35,6 +35,10 @@ ul{
     width: 100%;
     text-align: center;
 }
+.h-gb-tab img{
+    width:100%;
+}
+
 .h-gb-tab .item,.h-gb-tab .item2{
     display: inline-block;
     width: 16px;

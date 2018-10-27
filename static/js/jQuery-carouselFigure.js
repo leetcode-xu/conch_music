@@ -106,7 +106,7 @@
 }(jQuery, window));
 
 
-
-window.onload = function(){
-    alert('hello word')
-}
+//
+// window.onload = function(){
+//     alert('hello word')
+// // }

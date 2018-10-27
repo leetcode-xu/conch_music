@@ -40,10 +40,11 @@ body {
 }
 .header_bg{
 	background: #252323;
+	height: 100px;
 }
-.header{
-	padding:2% 4%;
-}
+/*.header{*/
+	/*!*padding:2% 4%;*!*/
+/*}*/
 .logo{
 	float:left;
 	padding-top: 10px;
@@ -572,7 +573,7 @@ p.cart a:hover{
 	padding: 4px 6px;
 }
 .back-btn ul li:before{
-	content: url('../images/back.png');
+	/*content: url('../images/back.png');*/
 }
 .back-btn ul li a {
 	padding: 4px 10px;
