@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import  HttpResponse
 # Create your views here.
-from .models import *
+from discover.models import *
+
 
 
 
@@ -22,6 +23,10 @@ def my_music(request):
 def attention(request):
     user_id = request.session.get('user_id', None)
     fan_list = Friend.objects.filter(user_id = user_id)
+    singer_list = []
+    user_list = []
+    for f in fan_list:
+        fan_list.fan_id
     # if fan_list:
     return render(request, 'my_music/focus.html', {'list': fan_list,'user':request.session})
 

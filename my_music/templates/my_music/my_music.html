@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
 
 
+
 {% endblock %}
 
 {#    start mod_profile#}
@@ -63,17 +64,10 @@
                     {% for music in music_list %}
                         <div class="rows">
                             <ul>
-                                <li>
-                                    <div class="music_name">
-                                        <a class="music_a">{{ music.music_name }}</a>
-                                        <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
-                                        <div class="add"><a class="add_a"></a></div>
-                                        <div class="play" data-music_path="{{ music.music_path }}"><a class="play_a"></a></div>
-                                    </div>
-                                </li>
-                                <li><div class="singer"><label>{{ music.singer }}</label></div></li>
-                                <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
-                                <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
+                                <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>
+                                <li><div class="singer"><a >{{ music.singer }}</a></div></li>
+                                <li><div class="album"><a >{{ music.music_name | default:'无名'}}</a></div></li>
+                                <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>
                             </ul>
                         </div>
                     {% endfor %}

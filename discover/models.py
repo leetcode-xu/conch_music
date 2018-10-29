@@ -38,9 +38,9 @@ class User(models.Model):
 class Friend(models.Model):
     id = models.AutoField(primary_key=True)
 
-    user_id = models.CharField(max_length=20)
+    user_id = models.IntegerField()
 
-    friend_id = models.CharField(max_length=20)
+    follow_id = models.IntegerField()
 
     class Meta:
         db_table = 'friend'
@@ -75,7 +75,7 @@ class MusicList(models.Model):
 
     music_path = models.CharField(max_length=100)
 
-    # lrc_path = models.CharField(max_length=100)
+    lrc_path = models.CharField(max_length=100)
 
     singer = models.CharField(max_length=15)
 
