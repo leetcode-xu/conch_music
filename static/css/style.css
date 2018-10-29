@@ -757,6 +757,7 @@ p.para{
 	margin-left: -10px;
 }
 .span_of_3{
+	position: relative;
 	margin: 4% 0 0;
 	padding-top: 0px;
 }
@@ -816,6 +817,7 @@ p.para{
 
 
 .span_of_3 ul{
+	margin: 0 auto;
 	display: block;
     list-style-type: disc;
     float: none;
@@ -830,7 +832,6 @@ p.para{
 
     margin-right: 0;
     width: 1220px;
-    height: 700px;
 
 }
 
