@@ -32,8 +32,8 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="#">我喜欢</a>
-        <a class="my_like my_like_box" href="#">我创建的歌单</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}">我喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
         <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
         <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
     </div>
@@ -95,7 +95,7 @@
         {% else %}
             <div class="focus_not_user" style="display: block;" id="focus_user_box">
                     <div class="none_txt">
-                        <p>什么也没有，去看看 <a href="{% url 'index' %}" style="color: #00BAC6">热门歌曲!</a> </p>
+                        <p>什么也没有，快去看看 <a href="{% url 'index' %}" style="color: #00BAC6">热门歌曲!</a> </p>
                     </div>
             </div>
         {% endif %}

@@ -32,8 +32,8 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="#">我喜欢</a>
-        <a class="my_like my_like_box" href="#">我创建的歌单</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}">我喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
         <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
         <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
     </div>
@@ -50,7 +50,7 @@
                 <i class="mod_btn__icon_new"></i>关注更多歌手
             </a>
 
-        {% if not list %}
+        {% if  list %}
             <div class="js_sub" id="focus_singer_box" style="display: block;">
                 <div class="mod_singer_list mod_singer_list--fans">
                     <ul class="singer_list__list">

@@ -33,7 +33,7 @@
     <div class="song">
         <div class="song_top">
             <a class="my_like" href="#">我喜欢</a>
-            <a class="my_like" href="#">我创建的歌单</a>
+            <a class="my_like" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
             <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
             <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
         </div>
@@ -43,11 +43,12 @@
 {#                <a class="zhuanji" href="#">专辑</a>#}
 {#            </div>#}
 
+
             <div class="mod_songlist_toolbar">
-                <a href="#" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
-                <a href="#" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
-                <a href="#" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
-                <a href="#" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
+                <a href="" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
+                <a href="" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
+                <a href="" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
+                <a href="" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
             </div>
             <div class="music_list">
                 <div class="list_header">
@@ -62,10 +63,17 @@
                     {% for music in music_list %}
                         <div class="rows">
                             <ul>
-                                <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>
-                                <li><div class="singer"><a >{{ music.singer }}</a></div></li>
-                                <li><div class="album"><a>{{ music.music_name | default:'无名'}}</a></div></li>
-                                <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>
+                                <li>
+                                    <div class="music_name">
+                                        <a class="music_a">{{ music.music_name }}</a>
+                                        <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
+                                        <div class="add"><a class="add_a"></a></div>
+                                        <div class="play" data-music_path="{{ music.music_path }}"><a class="play_a"></a></div>
+                                    </div>
+                                </li>
+                                <li><div class="singer"><label>{{ music.singer }}</label></div></li>
+                                <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
+                                <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
                             </ul>
                         </div>
                     {% endfor %}
@@ -93,9 +101,22 @@
             </div>
         </div>
     {% endif %}
+
 {% endblock %}
 
 
 
 
 
+
+{##}
+{#{% for music in music_list %}#}
+{#                        <div class="rows">#}
+{#                            <ul>#}
+{#                                <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>#}
+{#                                <li><div class="singer"><a >{{ music.singer }}</a></div></li>#}
+{#                                <li><div class="album"><a>{{ music.music_name | default:'无名'}}</a></div></li>#}
+{#                                <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                    {% endfor %}#}
