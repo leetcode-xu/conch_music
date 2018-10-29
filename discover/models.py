@@ -75,9 +75,11 @@ class MusicList(models.Model):
 
     music_path = models.CharField(max_length=100)
 
+    # lrc_path = models.CharField(max_length=100)
+
     singer = models.CharField(max_length=15)
 
-    # length_name = models.CharField(max_length=5)
+    length_time = models.CharField(max_length=5)
 
     play_No = models.IntegerField(default=0)
 
