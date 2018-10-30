@@ -17,7 +17,7 @@
             <img src="{% static user.image  %}">
         </div>
         <h1 class="profile__tit">
-        <span class="profile__name">海螺音乐</span>
+        <span class="profile__name">{{ user.user_nickname }}</span>
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
@@ -50,28 +50,28 @@
                 <i class="mod_btn__icon_new"></i>关注更多歌手
             </a>
 
-        {% if list %}
+        {% if user_list %}
             <div class="js_sub" id="focus_singer_box" style="display: block;">
                 <div class="mod_singer_list mod_singer_list--fans">
                     <ul class="singer_list__list">
-                        {% for singer in f%}
-                            <li class="singer_list__item">
-                                <div class="singer_list__item_box">
-                                    <a href="" class="singer_list__cover js_singer" hidefocus="true">
-                                        <img class="singer_list__pic" src="../../../static/images/zj.jpg" onerror="this.src=&#39;" alt="张杰">
+                        {% for user in user_list%}
+                             <li class="singer_list__item">
+                            <div class="singer_list__item_box">
+                                <a href="" class="singer_list__cover js_singer" hidefocus="true">
+                                    <img class="singer_list__pic" src="{% static user.image %}" onerror="this.src=&#39;" alt="{{ user.user_nickname }}">
+                                </a>
+                                <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ user.user_nickname }}">{{ user.user_nickname }}</a></h3>
+                                <p class="singer_list__info">1000万人关注</p>
+                                <div class="singer_list__focus">
+                                    <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
+
+                                        <span class="btn_focus__cont"><i class="mod_btn__icon_yes"></i>已关注</span>
+
                                     </a>
-                                    <h3 class="singer_list__title"><a href="" class="js_singer" title="张杰">张杰</a></h3>
-                                    <p class="singer_list__info">1191.5万人关注</p>
-                                    <div class="singer_list__focus">
-                                        <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
-
-                                            <span class="btn_focus__cont"><i class="mod_btn__icon_yes"></i>已关注</span>
-
-                                        </a>
-                                    </div>
                                 </div>
-                            </li>
-
+                            </div>
+                        </li>
+                        {% endfor %}
 
 
                     </ul>

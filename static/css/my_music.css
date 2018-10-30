@@ -783,7 +783,7 @@ a:active{text-decoration: none;color:green;}
 
 .singer_list__item_box {
 	position: relative;
-	margin-right: 20px;
+	/*margin-right: 20px;*/
 	background-color: #fbfbfd;
 	min-height: 195px;
 	padding: 25px 0;
