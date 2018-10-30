@@ -90,13 +90,13 @@
 		</div>
         <div class="main_bg">
 			<div class="wrap" style="margin: 0 auto">
-				<div class="main content_top" style="margin: 0 auto">
+				<div class="main content_top">
 					<h2 class="singertj">歌&nbsp;曲&nbsp;推&nbsp;荐</h2>>
 					<!-- start span_of_3 -->
-					<div class="span_of_3" style="margin: 0 auto">
-						<ul class="playlist__list" style="text-align: center;margin: 0 auto">
+					<div class="span_of_3" style="text-align: center;">
+						<ul class="playlist__list" style="display: inline-block;overflow: auto;">
 							{% for r in recommend_list %}
-                                <li class="playlist__item slide__item" style="float: left;">
+                                <li class="playlist__item slide__item" style="float: left;display: inline">
                                     <div class="playlist__item_box" style="border: 1px solid gray;">
                                         <div class="playlist__cover">
                                             <a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>
