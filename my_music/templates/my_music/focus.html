@@ -57,11 +57,11 @@
                         {% for singer in singer_list %}
                         <li class="singer_list__item">
                             <div class="singer_list__item_box">
-                                <a href="" class="singer_list__cover js_singer" hidefocus="true">
+                                <a href="{% url 'discover:singer' singer.singer_name %}" class="singer_list__cover js_singer" hidefocus="true">
                                     <img class="singer_list__pic" src="{% static singer.singer_pic %}" onerror="this.src=&#39;" alt="{{ singer.singer_name }}">
                                 </a>
                                 <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ singer.singer_name }}">{{ singer.singer_name }}</a></h3>
-                                <p class="singer_list__info">万人关注</p>
+                                <p class="singer_list__info">{{ singer.fanNo }}人关注</p>
                                 <div class="singer_list__focus">
                                     <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
 

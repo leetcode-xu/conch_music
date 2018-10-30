@@ -63,7 +63,7 @@
                         </li>
                         <li><div class="singer"><label>{{ music.singer }}</label></div></li>
                         <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
-                        <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
+                        <li><div class="time"><label>{{ music.length_time | default:'3:00'}}</label></div></li>
                     </ul>
                 </div>
             {% endfor %}

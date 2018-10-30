@@ -11,7 +11,6 @@ def my_music(request):
     if request.session.get('user_id',False):
         user_id = request.session['user_id']
         favourite = MusicFavourite.objects.filter(user_id=user_id)
-        # focus_num = SingerInfo.objects.filter()
         music_list = []
         for f in range(len(favourite)):
             music_list.append(MusicList.objects.get(list_id=favourite[f].Fmusic_id))
@@ -21,9 +20,10 @@ def my_music(request):
 
 
 
-def attention(request):
+def attention(request, singer_id=None):
     user_id = request.session.get('user_id', None)
     singer_id_list = Friend.objects.filter(user_id = user_id, follow_id__lt=1000000)
+    # focus_num = SingerInfo.objects.filter(singer_id = singer_id)[0].fanNo
 
     singer_list = []
     for singer_id in singer_id_list:
