@@ -38,9 +38,9 @@ class User(models.Model):
 class Friend(models.Model):
     id = models.AutoField(primary_key=True)
 
-    user_id = models.CharField(max_length=20)
+    user_id = models.IntegerField()
 
-    friend_id = models.CharField(max_length=20)
+    follow_id = models.IntegerField()
 
     class Meta:
         db_table = 'friend'
@@ -60,9 +60,9 @@ class MusicFavourite(models.Model):
 class MusicHistory(models.Model):
     history_id = models.AutoField(primary_key=True)
 
-    user_name = models.CharField(max_length=20)
+    user_id = models.CharField(max_length=20)
 
-    Hmusic = models.CharField(max_length=50)
+    Hmusic_id = models.CharField(max_length=50)
 
     class Meta:
         db_table = 'music_history'
@@ -75,7 +75,7 @@ class MusicList(models.Model):
 
     music_path = models.CharField(max_length=100)
 
-    # lrc_path = models.CharField(max_length=100)
+    lrc_path = models.CharField(max_length=100)
 
     singer = models.CharField(max_length=15)
 
@@ -96,6 +96,8 @@ class SingerInfo(models.Model):
     singer_pic = models.CharField(max_length=50)
 
     singer_text = models.TextField()
+
+    fanNo = models.IntegerField()
 
     class Meta:
         db_table = 'singer_info'
