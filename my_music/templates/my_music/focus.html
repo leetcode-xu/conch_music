@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/music_list.css' %}">
+    <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
+
+
+{% endblock %}
+
+{#    start mod_profile#}
+{% block main %}
+
+<div class="mod_profile" style="">
+    <div class="section_inner">
+        <div class="profile__cover_link">
+            <img src="{% static user.image  %}">
+        </div>
+        <h1 class="profile__tit">
+        <span class="profile__name">{{ user.user_nickname }}</span>
+        </h1>
+        <ul class="mod_user_statistic">
+            <li class="user_statistic__item">
+                <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+            </li>
+            <li>
+                <a href="{% url 'my_music:fans' %}"><strong>0</strong><span>粉丝</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="song">
+    <div class="song_top">
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}">我喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
+        <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
+        <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
+    </div>
+
+
+
+    <div class="js_box" id="focus_box" style="display: block;">
+        <div class="mod_tab" role="nav">
+            <a class="mod_tab__item mod_tab__current" href="#" >歌手</a>
+            <a class="mod_tab__item" href="{% url 'my_music:focus_user' %}" >用户</a>
+        </div>
+        <div class="profile_cont">
+            <a href="{% url 'index' %}" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">
+                <i class="mod_btn__icon_new"></i>关注更多歌手
+            </a>
+
+        {% if singer_list %}
+            <div class="js_sub" id="focus_singer_box" style="display: block;">
+                <div class="mod_singer_list mod_singer_list--fans">
+                    <ul class="singer_list__list">
+                        {% for singer in singer_list %}
+                        <li class="singer_list__item">
+                            <div class="singer_list__item_box">
+                                <a href="" class="singer_list__cover js_singer" hidefocus="true">
+                                    <img class="singer_list__pic" src="{% static singer.singer_pic %}" onerror="this.src=&#39;" alt="{{ singer.singer_name }}">
+                                </a>
+                                <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ singer.singer_name }}">{{ singer.singer_name }}</a></h3>
+                                <p class="singer_list__info">万人关注</p>
+                                <div class="singer_list__focus">
+                                    <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
+
+                                        <span class="btn_focus__cont"><i class="mod_btn__icon_yes"></i>已关注</span>
+
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+            <div class="focus_not_user" style="display: block;" id="focus_user_box">
+                    <div class="none_txt">
+                        <p>什么也没有，去看看 <a href="{% url 'index' %}" style="color: #00BAC6">热门歌曲!</a> </p>
+                    </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+
+
+
+

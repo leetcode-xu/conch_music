@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/music_list.css' %}">
+    <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
+
+
+
+{% endblock %}
+
+{#    start mod_profile#}
+{% block main %}
+    {% if user.user_id %}
+          <div class="mod_profile" style="">
+        <div class="section_inner">
+            <div class="profile__cover_link">
+                <img src="{% static user.image  %}">
+            </div>
+            <h1 class="profile__tit">
+            <span class="profile__name">{{ user.user_nickname }}</span>
+            </h1>
+            <ul class="mod_user_statistic">
+                <li class="user_statistic__item">
+                    <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+                </li>
+                <li>
+                    <a href="{% url 'my_music:fans' %}"><strong>0</strong><span>粉丝</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="song">
+        <div class="song_top">
+            <a class="my_like" href="#">我喜欢</a>
+            <a class="my_like" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
+            <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
+            <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
+        </div>
+        <div class="like_box">
+{#            <div class="song_like">#}
+{#                <a class="gequ" href="#">歌曲</a>#}
+{#                <a class="zhuanji" href="#">专辑</a>#}
+{#            </div>#}
+
+
+            <div class="mod_songlist_toolbar">
+                <a href="" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
+                <a href="" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
+                <a href="" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
+                <a href="" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
+            </div>
+            <div class="music_list">
+                <div class="list_header">
+                    <ul>
+                        <li class="li_music"><label >歌曲</label></li>
+                        <li class="li_singer"><label >歌手</label></li>
+                        <li class="li_album"><label >专辑</label></li>
+                        <li class="li_time"><label >时长</label></li>
+                    </ul>
+                </div>
+                <div class="list_content">
+                    {% for music in music_list %}
+                        <div class="rows">
+                            <ul>
+                                <li>
+                                    <div class="music_name">
+                                        <a class="music_a">{{ music.music_name }}</a>
+                                        <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
+                                        <div class="add"><a class="add_a"></a></div>
+                                        <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player'%}?list_id={{ music.list_id }}" class="play_a"></a></div>
+                                    </div>
+                                </li>
+                                <li><div class="singer"><label>{{ music.singer }}</label></div></li>
+                                <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
+                                <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="mod_page_nav"><strong class="current">1</strong>
+					<a href="" class="js_pageindex" data-index="2" hidefocus="">2</a>
+					<a href="" class="js_pageindex" data-index="3" hidefocus="">3</a>
+					<a href="" class="js_pageindex" data-index="4" hidefocus="">4</a><strong class="more">...</strong>
+					<a href="" class="js_pageindex" data-index="19" hidefocus="">19</a>
+					<a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span>&gt;</span></a>
+				</div>
+            </div>
+        </div>
+
+    </div>
+    {% else %}
+        <div class="login_bck">
+            <div class="login_box">
+                <h1 align="center" class="login_bt">私人音乐空间，听我想听的歌</h1>
+                <h4 align="center" class="login_me">登录我的音乐</h4>
+                <a href="{% url 'login' %}">
+                    <button class="login_butt" >立即登录</button>
+                </a>
+            </div>
+        </div>
+    {% endif %}
+     <script type="text/javascript" src="{% static 'js/music-list.js' %}"></script>
+{% endblock %}
+
+
+
+
+
+
