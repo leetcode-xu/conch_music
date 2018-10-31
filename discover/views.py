@@ -46,9 +46,18 @@ def index(request):
         search = forms.SearchForm()
         recommend_singer_list = random.sample(list(SingerInfo.objects.all()), 8)
         recommend_music_list = random.sample(list(MusicList.objects.all()), 8)
+        order_list = MusicList.objects.all().order_by('-play_No')[:24]
+        order_list_1 = order_list[0:6]
+        order_list_2 = order_list[6:12]
+        order_list_3 = order_list[12:18]
+        order_list_4 = order_list[18:24]
         return render_to_response('discover/index.html', {'user': request.session, 'search_form': search,
                                                           'recommend_singer_list': recommend_singer_list,
-                                                          'recommend_music_list': recommend_music_list})
+                                                          'recommend_music_list': recommend_music_list,
+                                                          'msuic_one': order_list_1,
+                                                          'music_two': order_list_2,
+                                                          'music_three': order_list_3,
+                                                          'music_four': order_list_4})
 
 
 def do_register(request):
