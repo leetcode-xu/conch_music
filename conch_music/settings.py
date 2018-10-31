@@ -91,15 +91,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Conch_music',
          # 开发环境可用，生产环境不要用
-<<<<<<< HEAD
         'USER': 'root',
         'PASSWORD': '123456',
         'HOST': '',
-=======
-        'USER': 'music',
-        'PASSWORD': '123456',
-        'HOST': '10.8.44.201',
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
         # 'HOST': '',
         'PORT': '',
     }
