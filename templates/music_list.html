@@ -1,9 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<<<<<<< HEAD
-=======
-< !doctype Html
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
 {% block title %}
     歌曲列表
 {% endblock %}
@@ -11,11 +7,7 @@
 {% block head %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/music_list.css' %}">
     <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
-<<<<<<< HEAD
     <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
-=======
-    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
     {% block head_music_list %}
         <style>
             .select{
@@ -62,7 +54,6 @@
                     <ul>
                         <li>
                             <div class="music_name">
-<<<<<<< HEAD
                                 <div class="select-music"></div>
                                 <a class="music_a">{{ music.music_name }}</a>
                                 <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
@@ -70,21 +61,11 @@
                                 <div class="play" data-music_path="{{ music.music_path }}">
                                     <a href="{% url 'player:player' %}?list_id={{ music.list_id }}" class="play_a" target="player_window"></a>
                                 </div>
-=======
-                                <a class="music_a">{{ music.music_name }}</a>
-                                <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
-                                <div class="add"><a class="add_a"></a></div>
-                                <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player' music.list_id %}" class="play_a"></a></div>
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
                             </div>
                         </li>
                         <li><div class="singer"><label>{{ music.singer }}</label></div></li>
                         <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
-<<<<<<< HEAD
                         <li><div class="time"><label>{{ music.length_time }}</label></div></li>
-=======
-                        <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
                     </ul>
                 </div>
             {% endfor %}
