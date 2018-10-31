@@ -28,10 +28,6 @@ urlpatterns = [
     url(r'^client/', include('client.urls', namespace='client')),
     url(r'^member/', include('member.urls',namespace='member')),
     url(r'^my_music/', include('my_music.urls', namespace='my_music')),
-<<<<<<< HEAD
     url(r'^player/', include('player.urls', namespace='player')),
-=======
-    url(r'^player', include('player.urls', namespace='player')),
->>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
     url(r'^admin/', admin.site.urls)
 ]
