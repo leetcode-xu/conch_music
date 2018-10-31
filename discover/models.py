@@ -89,8 +89,6 @@ class MusicList(models.Model):
         db_table = 'music_list'
         ordering = ['list_id']
 
-
-
 class SingerInfo(models.Model):
     singer_id = models.AutoField(primary_key=True)
 

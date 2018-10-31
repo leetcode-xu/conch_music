@@ -74,7 +74,6 @@ $(function () {
         let musicId = currentId.substr(1);
         $.cookie('music_id', musicId) ;
     }
-
     function loadInitial(){
         let volumeLength = Audio.audio.volume * (endVolumeLocation- beginVolumeLocation);
         currentVolumeLocation = volumeLength + beginVolumeLocation;
@@ -229,7 +228,7 @@ $(function () {
                 Audio.audio.pause();
         }
     );
-
+    loadInitial();
     Audio.audio.oncanplay = function () {
         time = parseInt(Audio.audio.duration);
         minute = parseInt(time / 60);
@@ -270,6 +269,7 @@ $(function () {
             // let currentRunWidth = $('.volume-runaway').outerWidth();
             Audio.audio.volume = volumeLength / $(this).outerWidth();
             currentVolume = Audio.audio.volume;
+            volume = Audio.audio.volume;
         }
     });
 

@@ -641,7 +641,6 @@ p.para{
 /* start grids_of_3 */
 .grids_of_3{
 	margin: 6% 0 0 6%;
-
 }
 .grid1_of_3:first-child{
 	margin-left: 0;
@@ -832,13 +831,6 @@ p.para{
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
 }
-/*.span_of_3 .grid1_of_3_3{*/
-	/*display: inline-block;*/
-
-    /*margin-right: 0;*/
-    /*width: 1220px;*/
-
-/*}*/
 
 .span_of_3 ul{
 	display: inline-block;
@@ -853,6 +845,7 @@ p.para{
     text-align: -webkit-match-parent;
     float: left;
 }
+
 .span_of_3 ul li{
 	display: inline;
     padding-bottom: 25px;
