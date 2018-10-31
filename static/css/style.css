@@ -33,6 +33,7 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 100%;
 	width: 100%;
+	margin: 0 auto;
 }
 .wrap{
 	margin:0 auto;
@@ -639,8 +640,7 @@ p.para{
 }
 /* start grids_of_3 */
 .grids_of_3{
-	text-align:center;
-	margin: 6% 0 4%;
+	margin: 6% 0 0 6%;
 }
 .grid1_of_3:first-child{
 	margin-left: 0;
@@ -655,23 +655,30 @@ p.para{
 .grid1_of_3_1{
 	background: url("../images/paihang1.jpg");
 	float:left;
-	width: 30%;
+	width: 20%;
 	height: 500px;
-	margin-left: 3.3333%;
+	margin-left: 2.4%;
 }
 .grid1_of_3_2{
 	background: url("../images/paihang3.jpg");
 	float:left;
-	width: 30%;
+	width: 20%;
 	height: 500px;
-	margin-left: 3.3333%;
+	margin-left: 2.4%;
 }
 .grid1_of_3_3{
 	background: url("../images/paihang4.jpg");
 	float:left;
-	width: 30%;
+	width: 20%;
 	height: 500px;
-	margin-left: 3.3333%;
+	margin-left: 2.4%;
+}
+.grid1_of_3_4{
+	background: url("../images/panghang5.jpg");
+	float:left;
+	width: 20%;
+	height: 500px;
+	margin-left: 2.4%;
 }
 
 .grid1_of_3 h4{
@@ -712,7 +719,6 @@ p.para{
 }
 .grid_of_3  h4 a:visited{
 	text-decoration: none;color:whitesmoke;
-}
 }
 .grid1_of_3 h4 a span{
 	color: #777777;
@@ -757,7 +763,7 @@ p.para{
 .span_of_3{
 	position: relative;
 	margin: 4% 0 0;
-	padding-top: 0px;
+	padding-top: 0;
 }
 
 .span_of_3:first-child{
@@ -825,14 +831,13 @@ p.para{
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
 }
-.span_of_3 .playlist__list{
+
+.span_of_3 ul{
 	display: inline-block;
-
-    margin-right: 0;
-    width: 1220px;
-
+	overflow: auto;
+	width: 1040px;
+	height: 800px;
 }
-
 .span_of_3 li{
 	list-style: none;
 	margin: 0;
@@ -840,16 +845,16 @@ p.para{
     text-align: -webkit-match-parent;
     float: left;
 }
-.playlist__list .playlist__item{
-	display: inline-block;
+
+.span_of_3 ul li{
+	display: inline;
     padding-bottom: 25px;
     overflow: hidden;
-    font-size: 14px;
     vertical-align: top;
     float: left;
     width:  250px;
     height: 350px;
-
+	margin-left: 10px;
 }
 .playlist__item_box{
 	position: relative;

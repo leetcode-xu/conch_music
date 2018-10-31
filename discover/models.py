@@ -82,10 +82,14 @@ class MusicList(models.Model):
 
     length_time = models.CharField(max_length=5)
 
+    music_pic = models.CharField(max_length=100)
+
     play_No = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'music_list'
+
+        ordering = ['list_id']
 
 
 class SingerInfo(models.Model):

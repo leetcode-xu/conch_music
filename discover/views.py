@@ -44,9 +44,11 @@ def do_login(request):
 def index(request):
     # return redirect(reverse('discover:index'))
         search = forms.SearchForm()
-        recommend_list = random.sample(list(SingerInfo.objects.all()), 8)
+        recommend_singer_list = random.sample(list(SingerInfo.objects.all()), 8)
+        recommend_music_list = random.sample(list(MusicList.objects.all()), 8)
         return render_to_response('discover/index.html', {'user': request.session, 'search_form': search,
-                                                          'recommend_list': recommend_list})
+                                                          'recommend_singer_list': recommend_singer_list,
+                                                          'recommend_music_list': recommend_music_list})
 
 
 def do_register(request):

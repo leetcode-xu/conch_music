@@ -3,5 +3,8 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
-    url(r'^(?P<list_id>\d*)', views.player, name='player')
+    url(r'^$', views.player, name='player'),
+    url(r'^like/$',views.like, name='like'),
+    url(r'^like_selected/$', views.like_selected, name='like_selected'),
+    url(r'^flush/$', views.flush)
 ]

@@ -1,9 +1,9 @@
 $(function () {
     const ELEMENT = {
-        rows: $('.rows'),
-        linkDownload: $('.download_a'),
-        linkAdd: $('.add_a'),
-        linkPlay: $('.play_a'),
+        rows: '.rows',
+        linkDownload: '.download_a',
+        linkAdd: '.add_a',
+        linkPlay: '.play_a',
     }
 
     $(ELEMENT.rows).mouseover(function (e) {

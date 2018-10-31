@@ -3,9 +3,6 @@ from django.http import  HttpResponse
 # Create your views here.
 from discover.models import *
 
-
-
-
 def my_music(request):
     # music_list
     if request.session.get('user_id',False):

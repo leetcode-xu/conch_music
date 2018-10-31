@@ -8,6 +8,16 @@ a{
     text-decoration: none;
 
 }
+.user_picture{
+    width: 50px;
+    height: 50px;
+    border: white solid 2px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+a:hover{
+    cursor: pointer ;
+}
 #pic_bg{
     position: absolute;
     top: 0;
@@ -15,10 +25,10 @@ a{
     z-index: 0;
     width: 100%;
     height: 932px;
-    background: url("../images/zj.jpg");
-    -webkit-filter: blur(50px);
+    background-image: url("../music/银临/default.png");
+    -webkit-filter: blur(60px);
     filter: blur(60px);
-    opacity: 0.3;
+    opacity: 0.5;
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
@@ -29,7 +39,7 @@ a{
     z-index: 1;
     width: 100%;
     height: 932px;
-    background: rgba(0,0,0,0.5);
+    background: rgba(30,30,30,0.5);
 }
 .title{
     float: left;
@@ -163,6 +173,12 @@ a{
 .check input{
     margin-top: 18px;
 }
+.serial-number{
+    display: block;
+    float: right;
+    margin-top: 14px;
+    margin-right: 10px;
+}
 .title-music-label label{
     display: block;
     margin-top: 12px;
@@ -286,7 +302,8 @@ a{
 }
 .music_name label{
     display: block;
-    margin-top: 12px;
+    margin-top: 14px;
+    float: left;
 }
 .singer a{
     display: block;
@@ -457,13 +474,35 @@ a{
     background-size: 70% 70%;
     background-repeat: no-repeat;
 }
+.div_like_click{
+    cursor: pointer;
+    float: right;
+    width: 11.76%;
+    height: 40px;
+    margin-top: 8px;
+    background: url("../images/like_icon_5.png");
+    -webkit-background-size: 50% 50%;
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+}
+.a_like{
+    cursor: pointer;
+    float: right;
+    width: 11.76%;
+    height: 40px;
+    margin-top: 8px;
+    background: url("../images/like_icon_3.png");
+    -webkit-background-size: 50% 50%;
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+}
 .div_while{
     cursor: pointer;
     float: right;
     width: 11.76%;
     height: 40px;
     margin-top: 8px;
-    background: url("../images/while.png");
+    background: url("../images/while_play.png");
     -webkit-background-size: 50% 50%;
     background-size: 70% 70%;
     background-repeat: no-repeat;
@@ -509,4 +548,20 @@ a{
     background: rgba(255,255,255,.8);
     border-radius: 1px;
     z-index: 999;
+}
+.windows{
+    background: rgba(0,0,0,.5);
+    position: fixed;
+    left: 42.5%;
+    top: 30%;
+    width:14%;
+    height: 18%;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+}
+.windows span{
+    font-size: 30px;
+    display: block;
+    margin: 23% 0;
 }

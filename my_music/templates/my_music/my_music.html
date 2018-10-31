@@ -69,7 +69,11 @@
                                         <a class="music_a">{{ music.music_name }}</a>
                                         <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
                                         <div class="add"><a class="add_a"></a></div>
+<<<<<<< HEAD
+                                        <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player'%}?list_id={{ music.list_id }}" class="play_a"></a></div>
+=======
                                         <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player' music.list_id %}" class="play_a"></a></div>
+>>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
                                     </div>
                                 </li>
                                 <li><div class="singer"><label>{{ music.singer }}</label></div></li>

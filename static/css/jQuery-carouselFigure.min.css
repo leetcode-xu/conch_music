@@ -82,7 +82,11 @@ ul{
 	right:20px;
 	}
 #warp{
+<<<<<<< HEAD
 	height: 383px;
+=======
+	height: 400px;
+>>>>>>> 66aee1ff9d64a062c8c3844397ea309294ac87d2
 	width: 100%;
 	margin:0 auto;
 }
