@@ -17,13 +17,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from . import views
 
+
 urlpatterns = [
     url(r'^$', views.my_music, name='my_music'),
     url(r'^attention/$', views.attention, name='attention'),
     url(r'^fans/$', views.fans, name='fans'),
     url(r'focus_user/$',views.focus_user, name='focus_user'),
     url(r'my_song_menu/$', views.my_song_menu, name='my_song_menu')
-
 ]
 
 

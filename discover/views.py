@@ -23,6 +23,8 @@ def do_login(request):
                 request.session['user_id'] = user[0].user_id
                 request.session['user_nickname'] = user[0].user_nickname
                 request.session['image'] = user[0].image
+                request.session['attention'] = user[0].attention
+                request.session['Fan'] = user[0].Fan
                 # print(request.session.get('previous_page'))
                 # print('sdfdsf')
                 if request.session.get('previous_page', '/') == 'http://localhost:8000/register/':

@@ -23,7 +23,6 @@ def my_music(request):
 def attention(request, singer_id=None):
     user_id = request.session.get('user_id', None)
     singer_id_list = Friend.objects.filter(user_id = user_id, follow_id__lt=1000000)
-    # focus_num = SingerInfo.objects.filter(singer_id = singer_id)[0].fanNo
 
     singer_list = []
     for singer_id in singer_id_list:
