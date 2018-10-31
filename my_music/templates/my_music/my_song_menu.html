@@ -21,10 +21,10 @@
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}"><strong>0</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>

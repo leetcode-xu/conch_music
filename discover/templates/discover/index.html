@@ -65,31 +65,6 @@
 				</div>
 			</div>
 		</div>
-{#        <div class="main_bg">#}
-{#			<div class="wrap" style="margin: 0 auto">#}
-{#				<div class="main content_top">#}
-{#					<h2 class="singertj">歌&nbsp;曲&nbsp;推&nbsp;荐</h2>>#}
-{#					<!-- start span_of_3 -->#}
-{#					<div class="span_of_3" style="text-align: center;">#}
-{#						<ul class="playlist__list" style="display: inline-block;overflow: auto;">#}
-{#							{% for music in recommend_music_list %}#}
-{#                                <li class="playlist__item slide__item" style="float: left;display: inline">#}
-{#                                    <div class="playlist__item_box" style="border: 1px solid gray;">#}
-{#                                        <div class="playlist__cover">#}
-{#                                            <a href="{% url 'player:player' %}?list_id={{ music.list_id }}" target="player_window"><img src="/static{{ music.music_pic }}" alt="" /></a>#}
-{#                                        </div>#}
-{#                                        <div class="span1_of_3_text">#}
-{#                                            <h5><a href="{% url 'player:player' %}?list_id={{ music.list_id }}" target="player_window">{{ music.music_name }}</a></h5>#}
-{#                                        </div>#}
-{#                                    </div>#}
-{#                                </li>#}
-{#							{% endfor %}#}
-{#						</ul>#}
-{#					</div>#}
-{#				</div>#}
-{#			</div>#}
-{#		</div>#}
-		<!-- start main -->
 		<div class="wrap1">
 			<div class="main content_top">
 				<div class="main">
@@ -100,28 +75,36 @@
 						<div class="grids_of_3">
 							<div class="grid1_of_3_1">
 								<div class="grid1_of_3_1_top">
-									<h4>巅&nbsp;峰&nbsp;榜<br><span>流&nbsp;行&nbsp;指&nbsp;数</span></h4>
+{#									<h4>巅&nbsp;峰&nbsp;榜<br><span>流&nbsp;行&nbsp;指&nbsp;数</span></h4>#}
 									<div class="grid1_of_3_1_sing">
-										<p><b>1.</b>&nbsp;&nbsp;Give Me A Chance</p>
+										{% for r in music_one %}
+                                            <p><b>{{ forloop.counter | add:0 }}</b>r.music<b>1.</b></p>
+                                        {% endfor %}
 									</div>
 								</div>
 							</div>
 							<div class="grid1_of_3_3">
 								<div class="grid1_of_3_1_top">
-									<h4>巅&nbsp;峰&nbsp;榜 <br><span>热歌 </span></h4>
-								<p></p>
+                                        {% for r in music_one %}
+                                            <p><b>{{ forloop.counter | add:0 }}</b>r.music<b>1.</b></p>
+                                        {% endfor %}
+{#									<h4>巅&nbsp;峰&nbsp;榜 <br><span>热歌 </span></h4>#}
 								</div>
 							</div>
 							<div class="grid1_of_3_2">
 								<div class="grid1_of_3_1_top">
-								<h4>巅&nbsp;峰&nbsp;榜<br><span></span>新歌</h4>
-								<p></p>
+{#								<h4>巅&nbsp;峰&nbsp;榜<br><span></span>新歌</h4>#}
+                                {% for r in music_one %}
+                                    <p><b>{{ forloop.counter | add:0 }}</b>r.music<b>1.</b></p>
+                                {% endfor %}
 								</div>
 							</div>
                             <div class="grid1_of_3_2">
 								<div class="grid1_of_3_1_top">
-								<h4>巅&nbsp;峰&nbsp;榜<br><span></span>新歌</h4>
-								<p></p>
+{#								<h4>巅&nbsp;峰&nbsp;榜<br><span></span>新歌</h4>#}
+                                {% for r in music_one %}
+                                    <p><b>{{ forloop.counter | add:0 }}</b>r.music<b>1.</b></p>
+                                {% endfor %}
 								</div>
 							</div>
 							<div class="clear"></div>

@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/music_list.css' %}">
     <link rel="stylesheet" type="text/css" href='{%  static "css/my_music.css"%}' />
     <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.js' %}"></script>
     {% block head_music_list %}
         <style>
             .select{
@@ -60,10 +65,23 @@
                                 <div class="play" data-music_path="{{ music.music_path }}">
                                     <a href="{% url 'player:player' %}?list_id={{ music.list_id }}" class="play_a" target="player_window"></a>
                                 </div>
+                                <a class="music_a">{{ music.music_name }}</a>
+                                <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
+                                <div class="add"><a class="add_a"></a></div>
+                                <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player' music.list_id %}" class="play_a"></a></div>
                             </div>
                         </li>
                         <li><div class="singer"><label>{{ music.singer }}</label></div></li>
                         <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
+                        <li><div class="time"><label>{{ music.length_time | default:'3:00'}}</label></div></li>
+
+
+                        <li><div class="time"><label>{{ music.length_time }}</label></div></li>
+
+                        <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
+
+
+                        <li><div class="time"><label>{{ music.length_time }}</label></div></li>
                     </ul>
                 </div>
             {% endfor %}

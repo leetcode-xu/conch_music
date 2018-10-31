@@ -22,10 +22,10 @@
             </h1>
             <ul class="mod_user_statistic">
                 <li class="user_statistic__item">
-                    <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+                    <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
                 </li>
                 <li>
-                    <a href="{% url 'my_music:fans' %}"><strong>0</strong><span>粉丝</span></a>
+                    <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
                 </li>
             </ul>
         </div>
@@ -70,13 +70,11 @@
                                         <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
                                         <div class="add"><a class="add_a"></a></div>
                                         <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player'%}?list_id={{ music.list_id }}" class="play_a"></a></div>
-                                        <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player' music.list_id %}" class="play_a"></a></div>
-
                                     </div>
                                 </li>
                                 <li><div class="singer"><label>{{ music.singer }}</label></div></li>
                                 <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>
-                                <li><div class="time"><label>{{ music.time | default:'3:00'}}</label></div></li>
+                                <li><div class="time"><label>{{ music.length_time | default:'3:00'}}</label></div></li>
                             </ul>
                         </div>
                     {% endfor %}
@@ -87,7 +85,7 @@
 					<a href="" class="js_pageindex" data-index="3" hidefocus="">3</a>
 					<a href="" class="js_pageindex" data-index="4" hidefocus="">4</a><strong class="more">...</strong>
 					<a href="" class="js_pageindex" data-index="19" hidefocus="">19</a>
-					<a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span>&gt;</span></a>
+					<a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span></span></a>
 				</div>
             </div>
         </div>
