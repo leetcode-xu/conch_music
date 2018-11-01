@@ -52,7 +52,7 @@ def index(request):
         return render_to_response('discover/index.html', {'user': request.session, 'search_form': search,
                                                           'recommend_singer_list': recommend_singer_list,
                                                           'recommend_music_list': recommend_music_list,
-                                                          'msuic_one': order_list_1,
+                                                          'music_one': order_list_1,
                                                           'music_two': order_list_2,
                                                           'music_three': order_list_3,
                                                           'music_four': order_list_4})
