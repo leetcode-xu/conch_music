@@ -1131,15 +1131,30 @@ a:active{text-decoration: none;color:green;}
     margin: 16px 15px;
 
 }
-
+.my_like_num{
+    float: left;
+    width: 450px;
+    height: 50px;
+    margin: 16px 61px;
+}
 .playlist_num{
     float: left;
     width: 500px;
     height: 50px;
     margin: 16px 61px;
 }
-
-
-
-
+.like{
+	margin-left: 20px;
+    background: honeydew;
+    height: 50px;
+    float: left;
+    margin-bottom: 20px;
+}
+.new-sheet{
+	font-size: 14px;
+	width: 100px;
+	height: 34px;
+	background: red;
+	cursor: pointer;
+}
 

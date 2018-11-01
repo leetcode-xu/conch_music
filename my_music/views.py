@@ -7,11 +7,25 @@ def my_music(request):
     # music_list
     if request.session.get('user_id',False):
         user_id = request.session['user_id']
-        favourite = MusicFavourite.objects.filter(user_id=user_id)
-        music_list = []
-        for f in range(len(favourite)):
-            music_list.append(MusicList.objects.get(list_id=favourite[f].Fmusic_id))
-        return render(request, 'my_music/my_music.html', {'user': request.session, 'music_list': music_list})
+        sheet_id = request.GET.get('sheet',None)
+        if not sheet_id:
+            favourite = MusicFavourite.objects.filter(user_id=user_id)
+            music_list = []
+            for f in range(len(favourite)):
+                music_list.append(MusicList.objects.get(list_id=favourite[f].Fmusic_id))
+            return render(request, 'my_music/my_music.html', {'user': request.session,
+                                                              'sheet_name': '我喜欢' ,
+                                                              'music_list': music_list})
+        else:
+            music_id_list = MusicSheet.objects.filter(sheet_id=sheet_id)
+            music_list = []
+            if music_id_list:
+                for music_id in music_id_list:
+                    music_list.append(MusicList.objects.filter(music_id=music_id))
+            sheet_name = UserSheet.objects.filter(sheet_id=sheet_id)[0].sheet_name
+            return render(request, 'my_music/my_music.html', {'user': request.session,
+                                                              'sheet_name': sheet_name ,
+                                                              'music_list': music_list})
     else:
         return  render(request, 'my_music/my_music.html', {'user': request.session})
 
@@ -45,5 +59,14 @@ def fans(request):
 
 def my_song_menu(request):
     user_id = request.session.get('user_id', None)
-    fan_list = Friend.objects.filter(user_id=user_id)
-    return render(request, 'my_music/my_song_menu.html', {'list': fan_list,'user':request.session})
+    sheet_list = UserSheet.objects.filter(user_id=user_id)
+    like_count = MusicFavourite.objects.all().count()
+    return render(request, 'my_music/my_song_menu.html', {'like_count':like_count, 'sheet_list': sheet_list,'user':request.session})
+
+
+def new_sheet(request):
+    user_id = request.session.get('user_id')
+    sheet_name = request.POST.get('sheet_name', None)
+    UserSheet.objects.create(sheet_name=sheet_name, user_id=user_id)
+    user_list = UserSheet.objects.filter(user_id=user_id)
+    return render(request, 'my_music/sheet_list.html', {'sheet_list': user_list})

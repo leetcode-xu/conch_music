@@ -33,7 +33,7 @@
 
     <div class="song">
         <div class="song_top">
-            <a class="my_like" href="#">我喜欢</a>
+            <a class="my_like" href="#">{{ sheet_name }}</a>
             <a class="my_like" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
             <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
             <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
@@ -69,7 +69,9 @@
                                         <a class="music_a">{{ music.music_name }}</a>
                                         <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
                                         <div class="add"><a class="add_a"></a></div>
-                                        <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player'%}?list_id={{ music.list_id }}" class="play_a"></a></div>
+                                        <div class="play" data-music_path="{{ music.music_path }}">
+                                            <a href="{% url 'player:player' %}?list_id={{ music.list_id }}" class="play_a" target="player_window"></a>
+                                        </div>
                                     </div>
                                 </li>
                                 <li><div class="singer"><label>{{ music.singer }}</label></div></li>

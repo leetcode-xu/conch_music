@@ -340,7 +340,22 @@ a:hover{
 }
 .lyrics{
     width: 100%;
-    height: 60%
+    height: 60%;
+    overflow: hidden;
+}
+#lyrics-msg{
+    position: relative;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+.lyrics p{
+    line-height: 30px;
+}
+.active{
+    color: #31c27c;
 }
 .channel{
     float: left;
