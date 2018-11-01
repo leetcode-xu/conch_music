@@ -8,6 +8,7 @@ $(function () {
         musicPicture: [],
         backImage: [],
         rowsId : [],
+        lrc: [],
     };
 
     const ELEMENT = {
@@ -56,8 +57,26 @@ $(function () {
     var currentVolume = Audio.audio.volume;
     var isWhile = 0;
 
+    function getLyric(url) {
+        //建立一个XMLHttpRequest请求
+        var request = new XMLHttpRequest();
+        //配置, url为歌词地址，比如：'./content/songs/foo.lrc'
+        request.open('GET', url, true);
+        //因为我们需要的歌词是纯文本形式的，所以设置返回类型为文本
+        request.responseType = 'text';
+        //一旦请求成功，但得到了想要的歌词了
+        request.onload = function() {
+            //这里获得歌词文件
+            var lyric = request.response;
+            $()
+        };
+        //向服务器发送请求
+        request.send();
+    }
+
+
     // 改变界面背景和歌曲信息
-    function changeHtmlPlayMessage(preId, currentId) {
+    function changeHtmlPlayMessage(url, preId, currentId) {
         $(preId).find('a').css('color', '#c9c9c9');
         $(preId).find('label').css('color', '#c9c9c9');
         $(currentId).find('a').css('color', 'white');
@@ -88,11 +107,13 @@ $(function () {
             Audio.musicPicture.push($(this).data('picture'));
             Audio.backImage.push($(this).data('back'));
             Audio.rowsId.push($(this).data('id'));
+            Audio.lrc.push($(this).data('lrc'));
         });
         let currentId = $(ELEMENT.musicList).data('play_id');
         Audio.currentIndex = $(currentId).find(ELEMENT.serialNumber).html() -1;
         Audio.audio.src=Audio.srcs[Audio.currentIndex];
-        changeHtmlPlayMessage(preId='#0', currentId);
+        let url = Audio.lrc[Audio.currentIndex];
+        changeHtmlPlayMessage(url, '#0', currentId);
         // while (!Audio.audio.readyState){}  判断数据是否就绪,但是似乎没有作用
         let btnPlay = $(ELEMENT.btnPlay);
         btnPlay.toggleClass('audio_pause');
@@ -374,7 +395,8 @@ $(function () {
         Audio.currentIndex = targetIndex < 0 ? Audio.srcs.length - 1 : targetIndex;
         Audio.audio.src = Audio.srcs[Audio.currentIndex];
         let currentId = Audio.rowsId[Audio.currentIndex];
-        changeHtmlPlayMessage(preId, currentId);
+        let url = Audio.lrc[Audio.currentIndex];
+        changeHtmlPlayMessage(url, preId, currentId);
         Audio.audio.play()
     });
 
@@ -390,7 +412,8 @@ $(function () {
         Audio.currentIndex = targetIndex > Audio.srcs.length - 1 ? 0 : targetIndex;
         Audio.audio.src = Audio.srcs[Audio.currentIndex];
         let currentId = Audio.rowsId[Audio.currentIndex];
-        changeHtmlPlayMessage(preId,currentId);
+        let url = Audio.lrc[Audio.currentIndex];
+        changeHtmlPlayMessage(url, preId,currentId);
         Audio.audio.play()
     }
 

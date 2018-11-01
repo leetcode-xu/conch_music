@@ -29,9 +29,5 @@ urlpatterns = [
     url(r'^member/', include('member.urls',namespace='member')),
     url(r'^my_music/', include('my_music.urls', namespace='my_music')),
     url(r'^player/', include('player.urls', namespace='player')),
-<<<<<<< HEAD
-=======
-    url(r'^player', include('player.urls', namespace='player')),
->>>>>>> 651e86e508851f8eb10051455d5f24fa838617be
     url(r'^admin/', admin.site.urls)
 ]

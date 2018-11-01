@@ -320,7 +320,7 @@ a:hover{
 }
 .singer_message{
     width: 100%;
-    height: 285px;
+    height: 40%;
 }
 .singer_msg_pic img{
     width: 186px;
@@ -339,7 +339,8 @@ a:hover{
     text-align: center;
 }
 .lyrics{
-
+    width: 100%;
+    height: 60%
 }
 .channel{
     float: left;

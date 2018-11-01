@@ -43,7 +43,7 @@
                                     <div class="music-recording" id="{{ music.list_id }}">
                                         <div class="music">
                                             <div class="check"><input class="singer-check" type="checkbox" value="{{ music.list_id }}"><label class="serial-number">{{ forloop.counter }}</label></div>
-                                            <div class="music_name" data-id="#{{ music.list_id }}" data-back="/static{{ music.music_pic }}" data-picture="/static{{ music.music_pic }}" data-singer="{{ music.singer }}" data-music_path="../../static/{{ music.music_path }}" ><label>{{ music.music_name }}</label></div>
+                                            <div data-lrc="/static{{ music.lrc_path }}" class="music_name" data-id="#{{ music.list_id }}" data-back="/static{{ music.music_pic }}" data-picture="/static{{ music.music_pic }}" data-singer="{{ music.singer }}" data-music_path="../../static/{{ music.music_path }}" ><label>{{ music.music_name }}</label></div>
                                             <div class="delete"><a class="delete_a"></a></div>
                                             <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>
                                             <div class="add"><a class="add_a"></a></div>
