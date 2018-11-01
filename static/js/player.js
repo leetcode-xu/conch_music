@@ -9,6 +9,7 @@ $(function () {
         backImage: [],
         rowsId : [],
         lrc: [],
+        lyrics: '',
     };
 
     const ELEMENT = {
@@ -47,6 +48,7 @@ $(function () {
         window: '.windows',
         allCheck: '.all_check',
         singerCheck: '.singer-check',
+        lyrics: '.lyrics',
 
     };
 
@@ -56,6 +58,40 @@ $(function () {
     var endVolumeLocation = $(ELEMENT.volumeProgress).outerWidth() + beginVolumeLocation;
     var currentVolume = Audio.audio.volume;
     var isWhile = 0;
+
+    function parseLyric(text) {
+        //将文本分隔成一行一行，存入数组
+        var lines = text.split('\n'),
+            //用于匹配时间的正则表达式，匹配的结果类似[xx:xx.xx]
+            pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+            //保存最终结果的数组
+            result = [];
+        //去掉不含时间的行
+        while (!pattern.test(lines[0])) {
+            lines = lines.slice(1);
+        };
+        //上面用'\n'生成生成数组时，结果中最后一个为空元素，这里将去掉
+        lines[lines.length - 1].length === 0 && lines.pop();
+        lines.forEach(function(v /*数组元素值*/ , i /*元素索引*/ , a /*数组本身*/ ) {
+            //提取出时间[xx:xx.xx]
+            var time = v.match(pattern),
+            //提取歌词
+            value = v.replace(pattern, '');
+            //因为一行里面可能有多个时间，所以time有可能是[xx:xx.xx][xx:xx.xx][xx:xx.xx]的形式，需要进一步分隔
+            time.forEach(function(v1, i1, a1) {
+                //去掉时间里的中括号得到xx:xx.xx
+                var t = v1.slice(1, -1).split(':');
+                //将结果压入最终数组
+                if(value)
+                    result.push([Math.floor(parseInt(t[0], 10) * 60 + parseFloat(t[1])), value]); //
+            });
+        });
+        //最后将结果数组中的元素按时间大小排序，以便保存之后正常显示歌词
+        result.sort(function(a, b) {
+            return a[0] - b[0];
+        });
+        return result;
+    }
 
     function getLyric(url) {
         //建立一个XMLHttpRequest请求
@@ -67,15 +103,62 @@ $(function () {
         //一旦请求成功，但得到了想要的歌词了
         request.onload = function() {
             //这里获得歌词文件
-            var lyric = request.response;
-            $()
+            Audio.lyrics = parseLyric(request.response);
+            $('#lyrics-msg').remove();
+            $(ELEMENT.lyrics).append($("<div id='lyrics-msg'></div>"))
+            Audio.lyrics.forEach(function (v, i, l) {
+                $('#lyrics-msg').append($("<p data-index="+ i +" "+"data-play="+ v[0]+">"+v[1]+"</p>"));
+            });
         };
         //向服务器发送请求
         request.send();
     }
+    
+    // Audio.audio.ontimeupdate()
 
-
-    // 改变界面背景和歌曲信息
+    // setInterval(function () {
+    //     let cur = Audio.audio.currentTime;
+    //     for (let i = 0; i < Audio.lyrics.length; i++)
+    //         if (cur < Audio.lyrics[i][0]) {
+    //             $("#" + parseInt(Audio.lyrics[i][0])).css('color', '#31c27c');
+    //             break;
+    //         }
+    // }, 100);
+    
+    Audio.audio.ontimeupdate = function () {
+        // for (let i = 0; i < Audio.lyrics.length; i++){
+        //     if (this.currentTime >= Math.floor(Audio.lyrics[i][0])) {
+        //         $("#" + Audio.lyrics[i][0]).stop().addClass('active').siblings().removeClass('active')
+        //         // $("#" + parseInt(Audio.lyrics[i][0])).css('color', '#31c27c');
+        //     }else{
+        //         return ;
+        //     }
+        //
+        // }
+        let curTime = Math.floor(this.currentTime)
+        $('#lyrics-msg p').each(function () {
+            playTime = $(this).data('play')
+            if(curTime == playTime){
+                $(this).stop().addClass('active').siblings().removeClass('active')
+            }else{
+                return;
+            }
+            var index = $(this).data("index"); //当前元素下标
+            var lineHeight =$(this).height() ; //一行歌词高度
+            var boxHeight = $('#lyrics-msg').height(); //歌词显示区域高度
+            var screensize = boxHeight / lineHeight; //一屏显示多少句歌词
+            var half = Math.floor(screensize / 2); //半屏歌词数量
+            //当前歌词超过半屏
+            if(index > half){
+                //计算出超过的高度 减去 一行歌词的高度
+                var top = (half - index) * lineHeight + lineHeight
+                $('#lyrics-msg').css({
+                "top" : parseInt(top) + "px"
+                });
+            }
+        })
+    };
+    // 改变界面背景和歌曲信息,歌词信息
     function changeHtmlPlayMessage(url, preId, currentId) {
         $(preId).find('a').css('color', '#c9c9c9');
         $(preId).find('label').css('color', '#c9c9c9');
@@ -92,7 +175,10 @@ $(function () {
         $(ELEMENT.singerDownloadId).attr('href', Audio.srcs[Audio.currentIndex]);
         let musicId = currentId.substr(1);
         $.cookie('music_id', musicId) ;
+        getLyric(url);
     }
+
+
     function loadInitial(){
         let volumeLength = Audio.audio.volume * (endVolumeLocation- beginVolumeLocation);
         currentVolumeLocation = volumeLength + beginVolumeLocation;
@@ -439,7 +525,8 @@ $(function () {
         let targetIndex = $(currentId).find(ELEMENT.serialNumber).html() - 1;
         Audio.currentIndex = targetIndex >= 0 && targetIndex <= Audio.srcs.length -1 ? targetIndex : 0;
         Audio.audio.src = Audio.srcs[Audio.currentIndex];
-        changeHtmlPlayMessage(preId,currentId);
+        let url = Audio.lrc[Audio.currentIndex];
+        changeHtmlPlayMessage(url, preId,currentId);
         Audio.audio.play();
     })
 

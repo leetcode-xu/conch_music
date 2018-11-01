@@ -75,3 +75,6 @@ def flush(request):
 
 def delete(request):
     user_history_id = ""
+
+
+
