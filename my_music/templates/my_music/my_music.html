@@ -107,6 +107,20 @@
 
 
 
-
+{#<div class="rows">#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <div class="music_name">#}
+{#                                        <a class="music_a">{{ music.music_name }}</a>#}
+{#                                        <div class="download"><a class="download_a" href="{% static music.music_path %}" download="{{ music.music_name }}.mp3"></a></div>#}
+{#                                        <div class="add"><a class="add_a"></a></div>#}
+{#                                        <div class="play" data-music_path="{{ music.music_path }}"><a href="{% url 'player:player'%}?list_id={{ music.list_id }}" class="play_a"></a></div>#}
+{#                                    </div>#}
+{#                                </li>#}
+{#                                <li><div class="singer"><label>{{ music.singer }}</label></div></li>#}
+{#                                <li><div class="album"><a><p>{{ music.music_name | default:'无名'}}</p></a></div></li>#}
+{#                                <li><div class="time"><label>{{ music.length_time | default:'3:00'}}</label></div></li>#}
+{#                            </ul>#}
+{#                        </div>#}
 
 

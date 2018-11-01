@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^attention/$', views.attention, name='attention'),
     url(r'^fans/$', views.fans, name='fans'),
     url(r'focus_user/$',views.focus_user, name='focus_user'),
-    url(r'my_song_menu/$', views.my_song_menu, name='my_song_menu')
+    url(r'my_song_menu/$', views.my_song_menu, name='my_song_menu'),
 ]
 
 

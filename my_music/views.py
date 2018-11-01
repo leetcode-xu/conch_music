@@ -47,3 +47,5 @@ def my_song_menu(request):
     user_id = request.session.get('user_id', None)
     fan_list = Friend.objects.filter(user_id=user_id)
     return render(request, 'my_music/my_song_menu.html', {'list': fan_list,'user':request.session})
+
+
