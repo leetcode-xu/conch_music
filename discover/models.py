@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 
 sex_choices = (
@@ -12,7 +13,7 @@ sex_choices = (
 class User(models.Model):
     user_id = models.AutoField(primary_key=True)
 
-    user_phone = models.CharField(max_length=11,unique=True)
+    user_phone = models.CharField(max_length=11, unique=True)
 
     user_nickname = models.CharField(max_length=20, unique=True)
 
@@ -87,7 +88,9 @@ class MusicList(models.Model):
 
     class Meta:
         db_table = 'music_list'
+
         ordering = ['list_id']
+
 
 class SingerInfo(models.Model):
     singer_id = models.AutoField(primary_key=True)
@@ -103,6 +106,7 @@ class SingerInfo(models.Model):
     class Meta:
         db_table = 'singer_info'
 
+
 class UserSheet(models.Model):
     sheet_id = models.AutoField(primary_key=True)
 
@@ -113,6 +117,7 @@ class UserSheet(models.Model):
     class Meta:
         db_table = 'user_sheet'
 
+
 class MusicSheet(models.Model):
     sheet_id = models.IntegerField()
 
@@ -120,5 +125,3 @@ class MusicSheet(models.Model):
 
     class Meta:
         db_table = 'music_sheet'
-
-

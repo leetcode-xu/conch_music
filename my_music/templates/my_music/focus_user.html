@@ -21,10 +21,10 @@
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}"><strong>0</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}"><strong>0</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>
@@ -61,7 +61,7 @@
                                     <img class="singer_list__pic" src="{% static user.image %}" onerror="this.src=&#39;" alt="{{ user.user_nickname }}">
                                 </a>
                                 <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ user.user_nickname }}">{{ user.user_nickname }}</a></h3>
-                                <p class="singer_list__info">1000万人关注</p>
+                                <p class="singer_list__info">{{ user.Fan }}万人关注</p>
                                 <div class="singer_list__focus">
                                     <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
 

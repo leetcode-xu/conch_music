@@ -26,7 +26,7 @@
 						<ul>
 							{% for r in recommend_singer_list %}
                                 <li>
-                                    <div class="playlist__item_box" style="border: 1px solid gray;">
+                                    <div class="playlist__item_box" style="overflow: hidden;border-radius: 3px">
                                         <div class="playlist__cover">
                                             <a href="{% url 'discover:singer' r.singer_name %}"><img src="{% static r.singer_pic %}" alt="" /></a>
                                         </div>
@@ -41,16 +41,16 @@
 				</div>
 			</div>
 		</div>
-        <div class="main_bg">
-			<div class="wrap" style="margin: 0 auto">
-				<div class="main content_top">
+    <div class="main_bg">
+			<div class="wrap">
+				<div class="main content_top" style="text-align: center;">
 					<h2 class="singertj">歌&nbsp;曲&nbsp;推&nbsp;荐</h2>>
 					<!-- start span_of_3 -->
-					<div class="span_of_3" style="text-align: center;">
-						<ul class="playlist__list" style="display: inline-block;overflow: auto;">
+					<div class="span_of_3" style="text-align: center">
+						<ul>
 							{% for music in recommend_music_list %}
-                                <li class="playlist__item slide__item" style="float: left;display: inline">
-                                    <div class="playlist__item_box" style="border: 1px solid gray;">
+                                <li>
+                                    <div class="playlist__item_box" style="overflow: hidden;border-radius: 3px">
                                         <div class="playlist__cover">
                                             <a href="{% url 'player:player' %}?list_id={{ music.list_id }}" target="player_window"><img src="/static{{ music.music_pic }}" alt="" /></a>
                                         </div>
@@ -65,7 +65,6 @@
 				</div>
 			</div>
 		</div>
-		<!-- start main -->
 		<div class="wrap1">
 			<div class="main content_top">
 				<div class="main">
