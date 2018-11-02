@@ -40,10 +40,10 @@ a:active{text-decoration: none;color:green;}
 	position: relative;
 	left: 200px;
     width: 1200px;
-
+    display: inline-block;
 }
 .song_top{
-	position: absolute;
+	position: relative;
 	top: -41px;
 	left: 50px;
 	width: 900px;
@@ -64,8 +64,8 @@ a:active{text-decoration: none;color:green;}
 
 
 .like_box{
-	width: 900px;
-	height: 50px;
+	width: 1200px;
+	min-height: 500px;
 	position: absolute;
 	left: 56px;
 	top: 20px;
@@ -76,14 +76,12 @@ a:active{text-decoration: none;color:green;}
 }
 
 
-.zhuanji{
-	margin-left: 35px;
-}
 
-.mod_songlist_toolbar{
-	position: absolute;
-	top: 43px;
-}
+
+/*.mod_songlist_toolbar{*/
+	/*position: absolute;*/
+	/*top: 43px;*/
+/*}*/
 
 
 .mod_btn,
@@ -1147,14 +1145,37 @@ a:active{text-decoration: none;color:green;}
 	margin-left: 20px;
     background: honeydew;
     height: 50px;
+    width: 1232px;
     float: left;
     margin-bottom: 20px;
 }
+
 .new-sheet{
-	font-size: 14px;
-	width: 100px;
-	height: 34px;
-	background: red;
-	cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    min-width: 120px;
+    margin-right: 5px;
+    padding: 7px 20px;
+    border: solid 1px #c9c9c9;
+    border-radius: 2px;
+    opacity: 0.8;
+    font-size: 14px;
+    color: #31C27C;
+    background-color: transparent;
+    height: 38px;
+    white-space: nowrap;
+    box-sizing: border-box;
+    overflow: hidden;
+	position: relative;
+	left: 4.5%;
+}
+fnew-sheet:hover{
+    color: #FFF;
+    border-color: #FFF;
+}
+
+.add_song{
+	position: relative;
+	top: 2px;
 }
 

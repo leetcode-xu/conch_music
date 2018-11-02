@@ -37,7 +37,10 @@
         <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
         <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
     </div>
-    <div class="new-sheet" data-user_id="{{ user.user_id }}"><i class="add_img"></i><label>新建歌单</label></div>
+    <div class="new-sheet"><i class="add_img"></i>
+        <img src="../../../static/images/add_song.png" class="add_song">
+        <label class="new_song">新建歌单</label>
+    </div>
     <div class="mod_playlist_text js_list" style="display:;">
 		<ul class="playlist__header">
 			<li class="playlist__header_name">歌单</li>
