@@ -59,6 +59,10 @@ def fans(request):
 
 def my_song_menu(request):
     user_id = request.session.get('user_id', None)
+    fan_list = Friend.objects.filter(user_id=user_id)
+    return render(request, 'my_music/my_song_menu.html', {'list': fan_list,'user':request.session})
+
+
     sheet_list = UserSheet.objects.filter(user_id=user_id)
     like_count = MusicFavourite.objects.all().count()
     return render(request, 'my_music/my_song_menu.html', {'like_count':like_count, 'sheet_list': sheet_list,'user':request.session})

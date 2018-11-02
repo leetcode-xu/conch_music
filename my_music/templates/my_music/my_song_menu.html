@@ -39,8 +39,16 @@
         <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
         <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
     </div>
+
 {#    <div class="new-sheet"><i class="add_img"></i><label>新建歌单</label></div>#}
-    <input id="btn" type="button" value="创建歌单" style="margin-top: 30px;">
+{#    <div class="new-sheet"><i class="add_img"></i>#}
+{#        <img src="../../../static/images/add_song.png" class="add_song">#}
+{#        <label class="new_song">新建歌单</label>#}
+{#    </div>#}
+    <div>
+{#        <img src="../../../static/images/add_song.png" class="add_song">#}
+        <input id="btn" class="new-sheet" type="button" value="创建歌单" style="margin-top: 20px;">
+    </div>
     <!-- 自定义弹出框 -->
     <div id="textPopBox" class="popBox" >
         <div class=" popBoxHandle">
@@ -88,7 +96,7 @@
         EventUtil.addEvent(EventUtil._$('ok'), 'click', function () {
             //自定义点击确定按钮之后得操作
             var t = $("#backReason").val();
-            alert(t);
+{#            alert(t);#}
             //隐藏弹出框
             p.hide();
         });
@@ -122,18 +130,7 @@
         }
     </script>
 
-
-
-
-
-
-
-
-
-
-
-
-    <div class="mod_playlist_text js_list" style="display:;">
+    <div class="mod_playlist_text js_list">
 		<ul class="playlist__header">
 			<li class="playlist__header_name">歌单</li>
 			<li class="playlist__header_number">曲目数</li>
