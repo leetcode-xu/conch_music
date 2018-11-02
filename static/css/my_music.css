@@ -1177,6 +1177,8 @@ fnew-sheet:hover{
 .add_song{
 	position: relative;
 	top: 2px;
+	float: right;
+	padding-right: 50px;
 }
 
 .del-list-icon{

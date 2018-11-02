@@ -1,0 +1,92 @@
+body{margin:0}  
+.popBox {
+    width: 500px;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    box-shadow: 2px 3px 0 rgba(190, 190, 190, 0.3);
+    -webkit-box-shadow: 2px 3px 0 rgba(190, 190, 190, 0.3);
+    -moz-box-shadow: 2px 3px 0 rgba(190, 190, 190, 0.3);
+    text-align: center;
+    padding-bottom: 20px;
+    background-color: #fff;
+    z-index: 101;
+    font-family: Microsoft YaHei, Verdana, Arial, Helvetica, sans-serif;
+}
+.popBoxHandle{
+    height: 50px;
+    width: 100%;
+}
+.popBoxHandle h5{
+    font-family: "微软雅黑";
+    font-size: 25px;
+    font-weight: 300;
+    color: black;
+    margin: 0 auto;
+}
+
+td .button {
+    color: #555555;
+    border-top: 1px solid rgb(221, 221, 221);
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.875em;
+    width: 20%;
+    padding: 12px 0;
+    -webkit-transition: all 0.3s ease-in-out;
+    -transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.form_txt__input {
+    width: 350px;
+    height: 38px;
+    line-height: 38px;
+    font-size: 20px;
+    border: 1px solid rgba(150,150.150,0.4);
+    margin-left: 5px;
+    vertical-align: top;
+    background: 0 0;
+}
+.form__label {
+    position: absolute;
+    top: 0;
+    padding-left: 20px;
+    width: 81px;
+    padding-top: 25px;
+
+    line-height: 40px;
+    text-align: right;
+}
+.button_style1{
+    padding-right: 20px;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    padding-left: 20px;
+    background-color: #252323;
+    color:white;
+    float: right;
+
+}
+.button_style{
+    padding-right: 20px;
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    padding-left: 20px;
+    float: right;
+
+
+}
+.td_style{
+    padding-top: 30px;
+    padding-right: 30px;
+
+}
+
+.td_style:hover{
+    color: chartreuse;
+}
+
