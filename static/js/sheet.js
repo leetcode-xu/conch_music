@@ -1,8 +1,16 @@
 $(function () {
     $('.new-sheet').click(function () {
         let sheetName = prompt();
-        $.post('/my_music/new_sheet/', {'sheet_name':sheetName} ,function(response,status,xhr) {
-            $('.sheet-list').html(response);
-        })
-    })
+        if(sheetName && sheetName.replace(' ', '')){
+            userId = $(this).data('user_id');
+            alert(userId);
+            $.post('/my_music/new_sheet/', {'sheet_name':sheetName, 'user':userId} ,function(response,status,xhr) {
+                $('.sheet-list').html(response);
+            })
+        }
+    });
 })
+
+// $(function () {
+//
+// })

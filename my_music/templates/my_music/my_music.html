@@ -22,10 +22,10 @@
             </h1>
             <ul class="mod_user_statistic">
                 <li class="user_statistic__item">
-                    <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
+                    <a href="{% url 'my_music:attention' %}?user={{ user.user_id }}"><strong>{{ user.attention }}</strong><span>关注</span></a>
                 </li>
                 <li>
-                    <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
+                    <a href="{% url 'my_music:fans' %}?user={{ user.user_id }}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
                 </li>
             </ul>
         </div>
@@ -34,9 +34,9 @@
     <div class="song">
         <div class="song_top">
             <a class="my_like" href="#">{{ sheet_name }}</a>
-            <a class="my_like" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
-            <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
-            <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
+            <a class="my_like" href="{% url 'my_music:my_song_menu' %}?user={{ user.user_id }}">我创建的歌单</a>
+            <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
+            <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
         </div>
         <div class="like_box">
 {#            <div class="song_like">#}

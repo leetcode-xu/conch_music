@@ -21,10 +21,10 @@
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}?user={{ user.user_id }}"><strong>{{ user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}?user={{ user.user_id }}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>
@@ -32,12 +32,12 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}">我喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ user.user_id }}">我喜欢</a>
         <a class="my_like my_like_box" href="#">我创建的歌单</a>
-        <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
-        <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
+        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
+        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
     </div>
-    <div class="new-sheet"><i class="add_img"></i><label>新建歌单</label></div>
+    <div class="new-sheet" data-user_id="{{ user.user_id }}"><i class="add_img"></i><label>新建歌单</label></div>
     <div class="mod_playlist_text js_list" style="display:;">
 		<ul class="playlist__header">
 			<li class="playlist__header_name">歌单</li>
@@ -46,9 +46,9 @@
 		</ul>
         <div class="like">
             <div class="playlist_cover">
-                <a href=""><img src="../../../static/images/cover_like.png" alt="我喜欢"></a>
+                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}"><img src="../../../static/images/cover_like.png" alt="我喜欢"></a>
             </div>
-            <a href="{% url 'my_music:my_music' %}" class="playlist_my_like">我喜欢</a>
+            <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}" class="playlist_my_like">我喜欢</a>
             <span class="my_like_num">{{ like_count }}首</span>
         </div>
         <div class="sheet-list">
@@ -56,9 +56,9 @@
                 {% for sheet in sheet_list %}
                     <li class="playlist">
                         <div class="playlist_cover">
-                        <a href=""><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
+                        <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}"><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
                         </div>
-                        <a href="{% url 'my_music:my_music' %}?sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
+                        <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
                         <span class="playlist_num">{{ sheet.sheet_num }}首</span>
                     </li>
                 {% endfor %}

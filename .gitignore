@@ -7,7 +7,6 @@ static/music/
 *.pyc
 =======
 
-.idea
 将删除 .idea/
 
 #static/user_pic/
@@ -21,7 +20,7 @@ static/music/
 将删除 discover/__pycache__/
 将删除 discover/migrations/__pycache__/
 将删除 discover/templatetags/__pycache__/
-将删除 member/__pycache__/
+将删除 member/__pycache__/`
 将删除 member/migrations/__pycache__/
 将删除 my_music/__pycache__/
 将删除 my_music/migrations/__pycache__/

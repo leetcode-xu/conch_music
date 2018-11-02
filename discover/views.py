@@ -98,32 +98,41 @@ def search(request):
                 return render_to_response('discover/singer_details.html',
                                               {'user': request.session, 'singer': singer_list[0],'search':search , 'music_list':music_list})
             else:
-                return HttpResponse('歌手不存在')
+                return render_to_response('discover/search_faild.html', {'user': request.session, 'search':search})
         # 搜索用户
         elif search_type == 'user':
             user_list = User.objects.filter(user_nickname=search)
             if user_list:
-                return render_to_response('discover/search_result.html',
-                                          {'type': search_type, 'search': search, 'user': request.session, 'list': user_list})
+                return render_to_response('discover/search_user.html',
+                                          {'search': search, 'user': request.session, 'user_list': user_list})
             else:
-                return render_to_response('discover/search_result.html',
-                                          {'type': search_type, 'search': search,
-                                           'user': request.session, 'list': None})
+                return render_to_response('discover/search_faild.html', {'user': request.session, 'search':search})
+
         # 搜索其他
         elif search_type == 'MV' or search_type == 'album' or search_type == 'lyrics' or search_type == 'sheet':
-            return render_to_response('discover/search_result.html', {'type': search_type, 'search': search, 'user': request.session, 'list':None})
+            return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
         # 搜索歌曲
         else:
-            music_list = MusicList.objects.filter(music_name=search)
-            if music_list:
-                return render_to_response('discover/search_result.html',
-                                          {'type': 'music', 'search': search,
-                                           'user': request.session, 'music_list': music_list})
+            is_ajax = request.GET.get('is_ajax', None)
+            if is_ajax:
+                music_list = MusicList.objects.filter(music_name=search)
+                if music_list:
+                    return render_to_response('discover/search_music.html',
+                                             {'type': 'music', 'search': search,
+                                              'user': request.session, 'music_list': music_list})
+                else:
+                    return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
             else:
-                return render_to_response('discover/search_result.html',
-                                          {'type': 'music', 'search': search, 'user': request.session, 'music_list': None})
+                music_list = MusicList.objects.filter(music_name=search)
+                if music_list:
+                    return render_to_response('discover/search_result.html',
+                                              {'type': 'music', 'search': search,
+                                               'user': request.session, 'music_list': music_list})
+                else:
+                    return render_to_response('discover/search_result.html',
+                                              {'type': 'music', 'search': search, 'user': request.session, 'music_list': None})
     else:
-        return HttpResponse('搜索错误')
+        return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
 
 
 def singer(request, singer_name):
@@ -141,15 +150,21 @@ def singer(request, singer_name):
         return HttpResponse('歌手不存在')
 
 
-def play(request):
-    pass
-
-
-def profile(request):
-    pass
-
-
-def user(request):
-    pass
-
-
+def add_to_sheet(request):
+    if request.method == 'GET':
+        user_id = request.session.get('user_id', None)
+        if not user_id:
+            return HttpResponse('请先登录')
+        else:
+            sheet_list = UserSheet.objects.filter(user_id=user_id);
+            return render_to_response('add_to_sheet.html', {'sheet_list': sheet_list})
+    else:
+        music_id = request.POST.get('music_id', None)
+        sheet_id = request.POST.get('sheet_id', None)
+        if sheet_id and music_id:
+            if not MusicSheet.objects.filter(sheet_id=sheet_id, music_id=music_id):
+                MusicSheet.objects.create(sheet_id=sheet_id, music_id=music_id)
+                return HttpResponse('添加成功')
+            return HttpResponse('歌曲已存在')
+        else:
+            return HttpResponse('收藏失败')

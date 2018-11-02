@@ -21,10 +21,10 @@
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}"><strong>{{ user.attention }}</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}?user={{ user.user_id }}"><strong>{{ user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}?user={{ user.user_id }}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>
@@ -32,48 +32,42 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}">我喜欢</a>
-        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}">我创建的歌单</a>
-        <a class="my_like" href="{% url 'my_music:attention' %}">关注</a>
-        <a class="my_like" href="{% url 'my_music:fans' %}">粉丝</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ user.user_id }}">我喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}?user={{ user.user_id }}">我创建的歌单</a>
+        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
+        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
     </div>
-
-
 
     <div class="js_box" id="focus_box" style="display: block;">
         <div class="mod_tab" role="nav">
-            <a class="mod_tab__item mod_tab__current" href="{% url 'my_music:attention' %}" >歌手</a>
+            <a class="mod_tab__item mod_tab__current" href="{% url 'my_music:attention' %}?user={{ user.user_id }}" >歌手</a>
             <a class="mod_tab__item" href="#" >用户</a>
         </div>
         <div class="profile_cont">
-            <a href="javascript:;" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">
-                <i class="mod_btn__icon_new"></i>关注更多歌手
-            </a>
+{#            <a href="javascript:;" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">#}
+{#                <i class="mod_btn__icon_new"></i>关注更多歌手#}
+{#            </a>#}
 
         {% if user_list %}
             <div class="js_sub" id="focus_singer_box" style="display: block;">
                 <div class="mod_singer_list mod_singer_list--fans">
                     <ul class="singer_list__list">
                         {% for user in user_list%}
-                             <li class="singer_list__item">
+                        <li class="singer_list__item">
                             <div class="singer_list__item_box">
-                                <a href="" class="singer_list__cover js_singer" hidefocus="true">
+                                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}" class="singer_list__cover js_singer" hidefocus="true">
                                     <img class="singer_list__pic" src="{% static user.image %}" onerror="this.src=&#39;" alt="{{ user.user_nickname }}">
                                 </a>
                                 <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ user.user_nickname }}">{{ user.user_nickname }}</a></h3>
-                                <p class="singer_list__info">{{ user.Fan }}万人关注</p>
+                                <p class="singer_list__info">{{ user.Fan }}人关注</p>
                                 <div class="singer_list__focus">
                                     <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
-
                                         <span class="btn_focus__cont"><i class="mod_btn__icon_yes"></i>已关注</span>
-
                                     </a>
                                 </div>
                             </div>
                         </li>
                         {% endfor %}
-
-
                     </ul>
                 </div>
             </div>

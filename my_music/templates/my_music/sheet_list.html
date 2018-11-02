@@ -4,9 +4,9 @@
         {% for sheet in sheet_list %}
             <li class="playlist">
                 <div class="playlist_cover">
-                <a href=""><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
+                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}"><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
                 </div>
-                <a href="" class="playlist_my_like">{{ sheet.sheet_name }}</a>
+                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
                 <span class="playlist_num">{{ sheet.sheet_num }}首</span>
             </li>
         {% endfor %}

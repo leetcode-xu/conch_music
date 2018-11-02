@@ -1,0 +1,21 @@
+{% load static %}
+<div class="mod_singer_list mod_singer_list--fans">
+    <ul class="singer_list__list">
+        {% for user in user_list%}
+        <li class="singer_list__item">
+            <div class="singer_list__item_box">
+                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}" class="singer_list__cover js_singer" hidefocus="true">
+                    <img class="singer_list__pic" src="{% static user.image %}" onerror="this.src=&#39;" alt="{{ user.user_nickname }}">
+                </a>
+                <h3 class="singer_list__title"><a href="" class="js_singer" title="{{ user.user_nickname }}">{{ user.user_nickname }}</a></h3>
+                <p class="singer_list__info">{{ user.Fan }}人关注</p>
+                <div class="singer_list__focus">
+                    <a href="javascript:;" class="mod_btn singer_list__btn_focus js_follow_singer" >
+                        <span class="btn_focus__cont"><i class="mod_btn__icon_yes"></i>已关注</span>
+                    </a>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
