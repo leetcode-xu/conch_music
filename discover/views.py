@@ -149,22 +149,3 @@ def singer(request, singer_name):
     else:
         return HttpResponse('歌手不存在')
 
-
-def add_to_sheet(request):
-    if request.method == 'GET':
-        user_id = request.session.get('user_id', None)
-        if not user_id:
-            return HttpResponse('请先登录')
-        else:
-            sheet_list = UserSheet.objects.filter(user_id=user_id);
-            return render_to_response('add_to_sheet.html', {'sheet_list': sheet_list})
-    else:
-        music_id = request.POST.get('music_id', None)
-        sheet_id = request.POST.get('sheet_id', None)
-        if sheet_id and music_id:
-            if not MusicSheet.objects.filter(sheet_id=sheet_id, music_id=music_id):
-                MusicSheet.objects.create(sheet_id=sheet_id, music_id=music_id)
-                return HttpResponse('添加成功')
-            return HttpResponse('歌曲已存在')
-        else:
-            return HttpResponse('收藏失败')

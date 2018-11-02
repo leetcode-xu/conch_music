@@ -9,23 +9,12 @@ $(function () {
         divAddToSheet: '.add-to-sheet',
         sheetList: '.sheet-list',
         window: '.windows',
+        singleDeleteMusic: '.single-delete-music',
     };
 
-    $(ELEMENT.rows).mouseover(function (e) {
-        $(this).find(ELEMENT.linkDownload).css('display', 'block');
-        $(this).find(ELEMENT.linkAdd).css('display', 'block');
-        $(this).find(ELEMENT.linkPlay).css('display', 'block');
-    });
-
-    $(ELEMENT.rows).mouseout(function (e) {
-        $(this).find(ELEMENT.linkDownload).css('display', 'none');
-        $(this).find(ELEMENT.linkAdd).css('display', 'none');
-        $(this).find(ELEMENT.linkPlay).css('display', 'none');
-    });
-    
     $(ELEMENT.singerAddToSheet).click(function (e) {
         musicId = $(this).data('music_id');
-        $.get('/add_to_sheet/', {}, function(response, status, xhr) {
+        $.get('/add_to_sheet/', {'music_id': musicId}, function(response, status, xhr) {
             // let width=$(ELEMENT.singerAddToSheet).css('width');
             // let height=Math.floor($(ELEMENT.singerAddToSheet).css('height')/2);
             $(ELEMENT.divAddToSheet).html(response);

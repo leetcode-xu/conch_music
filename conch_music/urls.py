@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from discover import views
-
+from my_music import views as music_views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^login/$', views.do_login, name='login'),
     url(r'^register/$', views.do_register, name='register'),
     url(r'^logout/$', views.do_logout, name='logout'),
     url(r'^search/$', views.search, name='search'),
-    url(r'^add_to_sheet/', views.add_to_sheet),
+    url(r'^add_to_sheet/', music_views.add_to_sheet),
     # url(r'^user/(?P<user_id>\d+)/$', views.user, name='user'),
     url(r'^discover/', include('discover.urls', namespace='discover')),
     url(r'^client/', include('client.urls', namespace='client')),

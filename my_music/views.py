@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import  HttpResponse
 # Create your views here.
 from discover.models import *
@@ -24,11 +24,11 @@ def my_music(request):
                                                           'sheet_name': '喜欢',
                                                           'music_list': music_list})
     else:
-        music_id_list = MusicSheet.objects.filter(sheet_id=sheet_id)
+        music_sheet_list = MusicSheet.objects.filter(sheet_id=sheet_id)
         music_list = []
-        if music_id_list:
-            for music_id in music_id_list:
-                music_list.append(MusicList.objects.filter(music_id=music_id))
+        if music_sheet_list:
+            for music_sheet in music_sheet_list:
+                music_list.append(MusicList.objects.filter(list_id=music_sheet.music_id)[0])
         sheet_name = UserSheet.objects.filter(sheet_id=sheet_id)[0].sheet_name
         return render(request, 'my_music/my_music.html', {'that_user': user,
                                                           'this_user': request.session,
@@ -85,7 +85,7 @@ def my_song_menu(request):
         user_id = request.session.get('user_id', None)
     user = User.objects.filter(user_id=user_id)[0]
     sheet_list = UserSheet.objects.filter(user_id=user_id)
-    like_count = MusicFavourite.objects.all().count()
+    like_count = MusicFavourite.objects.filter(user_id=user_id).count()
     return render(request, 'my_music/my_song_menu.html', {'like_count':like_count,
                                                           'sheet_list': sheet_list,
                                                           'that_user':user,
@@ -105,7 +105,54 @@ def del_sheet(request):
     sheet_id = request.POST.get('sheet_id', None)
     user_id = request.session.get('user_id', None)
     if sheet_id:
-        UserSheet.objects.filter(user_id=user_id, sheet_id=sheet_id).delete()
+        UserSheet.objects.filter(sheet_id=sheet_id).delete()
         print('删除成功')
     sheet_list = UserSheet.objects.filter(user_id=user_id)
     return render(request, 'my_music/sheet_list.html', {'sheet_list': sheet_list})
+
+
+def add_to_sheet(request):
+    if request.method == 'GET':
+        music_id = request.GET.get('music_id', None)
+        user_id = request.session.get('user_id', None)
+        if not user_id:
+            return HttpResponse('请先登录')
+        else:
+            sheet_list = UserSheet.objects.filter(user_id=user_id);
+            return render_to_response('add_to_sheet.html', {'sheet_list': sheet_list, 'music_id':music_id})
+    else:
+        music_id = request.POST.get('music_id', None)
+        sheet_id = request.POST.get('sheet_id', None)
+        if sheet_id and music_id:
+            if sheet_id == '0':
+                user_id = request.session.get('user_id')
+                if user_id and  not MusicFavourite.objects.filter(user_id=user_id, Fmusic_id=music_id):
+                    MusicFavourite.objects.create(user_id=user_id, Fmusic_id=music_id)
+                return HttpResponse('添加成功')
+            elif not MusicSheet.objects.filter(sheet_id=sheet_id, music_id=music_id):
+                MusicSheet.objects.create(sheet_id=sheet_id, music_id=music_id)
+                sheet = UserSheet.objects.filter(sheet_id=sheet_id)
+                sheet_num = sheet[0].sheet_num + 1
+                sheet.update(sheet_num=sheet_num)
+                return HttpResponse('添加成功')
+            return HttpResponse('歌曲已存在')
+        else:
+            return HttpResponse('收藏失败')
+
+def del_music(request):
+    music_id = request.POST.get('music')
+    sheet = request.POST.get('sheet')
+    music_list = []
+    if sheet == '喜欢':
+        user_id = request.session.get('user_id')
+        MusicFavourite.objects.filter(user_id=user_id,Fmusic_id=music_id).delete()
+        favourite_list = MusicFavourite.objects.filter(user_id=user_id)
+        for favourite in favourite_list:
+            music_list.append(MusicList.objects.filter(list_id=favourite.Fmusic_id)[0])
+    else:
+        sheet_id = UserSheet.objects.filter(sheet_name=sheet)[0].sheet_id
+        MusicSheet.objects.filter(sheet_id=sheet_id, music_id=music_id).delete()
+        music_id_list = MusicSheet.objects.filter(sheet_id=sheet_id)
+        for music_id in music_id_list:
+            music_list.append(MusicList.objects.filter(list_id=music_id.music_id)[0])
+    return render_to_response('my_music/music.html', {'music_list': music_list, 'sheet_name': sheet})

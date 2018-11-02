@@ -1,6 +1,6 @@
 <ul>
-    <li><a class="sheet-list">播放队列</a></li>
-    <li><a class="sheet-list">我喜欢</a></li>
+    <li><a href="{% url 'player:player' %}?list_id={{ music_id }}" target="player_window" class="sheet-list">播放队列</a></li>
+    <li><a data-sheet_id="0" class="sheet-list">我喜欢</a></li>
     {% for sheet in sheet_list %}
         <li><a class="sheet-list" data-sheet_id="{{ sheet.sheet_id }}">{{ sheet.sheet_name }}</a></li>
     {% endfor %}
