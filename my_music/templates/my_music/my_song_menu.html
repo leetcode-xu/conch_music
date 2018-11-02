@@ -85,9 +85,9 @@
         });
         EventUtil.addEvent(EventUtil._$('ok'), 'click', function () {
             //自定义点击确定按钮之后得操作
-            let sheetName = ("#backReason").val();
+{#            let sheetName = ("#backReason").val();#}
             $('.new-sheet').click(function () {
-{#                let sheetName = prompt();#}
+                let sheetName = prompt();
                 $.post('/my_music/new_sheet/', {'sheet_name':sheetName} ,function(response,status,xhr) {
                  $('.sheet-list').html(response)
 
