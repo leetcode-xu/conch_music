@@ -5,7 +5,7 @@ from discover.models import *
 # Create your views here.
 
 def player(request):
-    list_id = request.GET.get('list_id', None)
+    list_id = request.GET.get('list_id', '-1')
     user_history_id = ""
     if request.META.get('HTTP_X_FORWARDED_FOR', None):
         user_history_id = request.META['HTTP_X_FORWARDED_FOR']
@@ -14,6 +14,35 @@ def player(request):
     if list_id == '0':
         MusicHistory.objects.filter(user_id=user_history_id).delete();
         return render(request, 'player/player.html', {'userImage':request.session.get('image'), 'music_list':None})
+    elif list_id == '-1':
+        sheet = request.GET.get('sheet', None)
+        user = request.GET.get('user', None)
+        music_sheet_list = []
+        sheet = UserSheet.objects.filter(sheet_name=sheet, user_id=user)
+        if sheet:
+            music_sheet_list = MusicSheet.objects.filter(sheet_id=sheet.sheet_id)
+            for music_sheet in music_sheet_list:
+                music_history = MusicHistory.objects.filter(user_id=user_history_id, Hmusic_id=music_sheet.music_id)
+                if not music_history:
+                    MusicHistory.objects.create(user_id=user_history_id, Hmusic_id=music_sheet.music_id)
+        else:
+            favourite_list = MusicFavourite.objects.filter(user_id=user)
+            for favourite in favourite_list:
+                music_history = MusicHistory.objects.filter(user_id=user_history_id, Hmusic_id=favourite.Fmusic_id)
+                if not music_history:
+                    MusicHistory.objects.create(user_id=user_history_id, Hmusic_id=favourite.Fmusic_id)
+        music_history_list = MusicHistory.objects.filter(user_id=user_history_id).order_by('-history_id')
+        music_list = []
+        singer_list = []
+        for mhl in music_history_list:
+            music = MusicList.objects.filter(list_id=mhl.Hmusic_id)[0]
+            if music:
+                music_list.append(music)
+        music_id = music_list[0].list_id if music_list else 0
+        return render(request, 'player/player.html', {'userImage': request.session.get('image'),
+                                                      'music_list': music_list,
+                                                      'singer_list': singer_list,
+                                                      'music_id': music_id})
     else:
         music = MusicList.objects.filter(list_id=list_id)
         if music:
@@ -27,7 +56,10 @@ def player(request):
                 music = MusicList.objects.filter(list_id=mhl.Hmusic_id)[0]
                 if music:
                     music_list.append(music)
-            return render(request, 'player/player.html', {'userImage':request.session.get('image'), 'music_list':music_list, 'singer_list':singer_list, 'music_id':list_id})
+            return render(request, 'player/player.html', {'userImage':request.session.get('image'),
+                                                          'music_list':music_list,
+                                                          'singer_list':singer_list,
+                                                          'music_id':list_id})
         else:
             return HttpResponse('对不起没有收录这首歌')
 

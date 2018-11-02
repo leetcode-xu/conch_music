@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'focus_user/$',views.focus_user, name='focus_user'),
     url(r'my_song_menu/$', views.my_song_menu, name='my_song_menu'),
     url(r'^new_sheet/$', views.new_sheet),
+    url(r'^del_sheet/$', views.del_sheet),
+    url(r'^del_music/$', views.del_music ),
 ]
 
 

@@ -1,14 +1,45 @@
 {% load static %}
-<div class="sheet-list">
-    <ul class="playlist_main">
-        {% for sheet in sheet_list %}
-            <li class="playlist">
-                <div class="playlist_cover">
-                <a href=""><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
-                </div>
-                <a href="" class="playlist_my_like">{{ sheet.sheet_name }}</a>
-                <span class="playlist_num">{{ sheet.sheet_num }}首</span>
-            </li>
-        {% endfor %}
-    </ul>
-</div>
+<ul class="playlist_main">
+    {% for sheet in sheet_list %}
+        <li class="playlist">
+            <div class="playlist_cover">
+            <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}"><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
+            </div>
+            <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
+            <span class="playlist_num">{{ sheet.sheet_num }}首</span>
+            <div class="del-list-icon" data-sheet_id="{{ sheet.sheet_id }}"></div>
+        </li>
+    {% endfor %}
+<script>
+            function del_sheet(){
+                let sheet_id = $(this).data('sheet_id');
+                let this_user = $(this).data('this_user');
+                let that_user = $(this).data('that_user');
+                if(that_user === this_user){
+                    let signal = window.confirm('确定删除?');
+                    if(signal){
+                        $.post('/my_music/del_sheet/', {'sheet_id': sheet_id}, function (response, status, xhr) {
+                            $('.sheet-list').html(response);
+                        })
+                    }
+                }else{
+                    let myWindow = $('.windows');
+                    myWindow.find('span').html('只有主人才能创建歌单哦');
+                    myWindow.css('display', 'block');
+                    setTimeout(function () {
+                        myWindow.css('display', 'none');
+                    },1000)
+                }
+            }
+
+            $('.playlist').mouseover(function () {
+                $(this).find('.del-list-icon').css('display', 'block')
+            });
+
+            $('.playlist').mouseout(function () {
+                $(this).find('.del-list-icon').css('display', 'none')
+            });
+
+            $('.del-list-icon').click(del_sheet);
+        </script>
+</ul>

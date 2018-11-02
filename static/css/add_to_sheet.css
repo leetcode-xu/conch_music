@@ -1,0 +1,30 @@
+.add-to-sheet{
+    width: 150px;
+    min-height: 92px;
+    position: absolute;
+    z-index: 99;
+    left:40%;
+    top:50%;
+    background: #E7E7E7;
+    display: none;
+}
+.add-to-sheet li{
+    float: left;
+    display: block;
+    text-decoration: none;
+    width: 150px;
+    height: 40px;
+}
+.sheet-list{
+    display: block;
+    width: 135px;
+    height: 30px;
+    text-align: left;
+    padding-left: 15px;
+    padding-top: 10px;
+}
+.sheet-list:hover{
+    background: #31c27c;
+    color: black;
+}
+

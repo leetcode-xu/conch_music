@@ -49,9 +49,9 @@
 					<div class="sign-ligin-btns">
 						<ul>
 							<li id="loginContainer">
-								{% if user.user_id %}
+								{% if this_user.user_id %}
                                     <a href="{% url 'my_music:my_music' %}" class="login" id="loginLabel" >
-                                        <img class="login_img" src="{% static user.image %}">
+                                        <img class="login_img" src="{% static this_user.image %}">
                                     </a>
                                 {% else %}
                                     <a class="login" id="loginButton" href="{% url 'login' %}"><span>登录</span></a>
@@ -220,6 +220,9 @@
 	                        	版权所有</a> <a target="_blank " href="http://www.tencent.com/law/mo_law.shtml?/law/copyright.htm " rel="noopener nofollow " title="吴彦祖文化经营许可证 ">吴彦组文化经营许可证</a></p>
 					</div>
 					<div class="clear "></div>
+                    <div class="windows">
+                        <span>弹出窗口</span>
+                    </div>
 				</div>
 			</div>
 		</div>

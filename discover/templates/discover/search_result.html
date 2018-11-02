@@ -32,65 +32,61 @@
 {% block main %}
     <div class="search_type">
         <ul>
-            <li><a href="?search={{ search }}&type=music">歌曲</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=singer">歌手</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=user">用户</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=sheet">歌单</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=MV">MV</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=album">专辑</a></li>
-            <li><a href="{% url 'search' %}?search={{ search }}&type=lyrics">歌词</a></li>
+            <li><a href="#" data-type="music" data-search="{{ search }}">歌曲</a></li>
+            <li><a href="#" data-type="singer" data-search="{{ search }}">歌手</a></li>
+            <li><a href="#" data-type="user" data-search="{{ search }}">用户</a></li>
+            <li><a href="#" data-type="sheet" data-search="{{ search }}">歌单</a></li>
+            <li><a href="#" data-type="MV" data-search="{{ search }}">MV</a></li>
+            <li><a href="#" data-type="album" data-search="{{ search }}">专辑</a></li>
+            <li><a href="#" data-type="lyrics" data-search="{{ search }}">歌词</a></li>
         </ul>
     </div>
-    {% if type == 'singer' %}
-        <ul>
-            <ul>
-                <li class="li_music"><label >歌曲</label></li>
-                <li class="li_singer"><label >歌手</label></li>
-                <li class="li_album"><label >专辑</label></li>
-                <li class="li_time"><label >时长</label></li>
-            </ul>
-        </ul>
-    {% elif type == 'music' %}
-        <div class="music_list">
-        <div class="mod_songlist_toolbar">
-            <a href="#" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
-            <a href="#" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
-            <a href="#" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
-            <a href="#" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
-        </div>
-        <div class="list_header">
-            <ul>
-                <li class="li_music"><label >歌曲</label></li>
-                <li class="li_singer"><label >歌手</label></li>
-                <li class="li_album"><label >专辑</label></li>
-                <li class="li_time"><label >时长</label></li>
-            </ul>
-        </div>
-        <div class="list_content">
-            {% for music in music_list %}
-                <div class="rows">
-                    <ul>
-                        <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>
-                        <li><div class="singer"><a >{{ music.singer }}</a></div></li>
-                        <li><div class="album"><a >{{ music.music_name | default:'无名'}}</a></div></li>
-                        <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>
-                    </ul>
+    <div class="search-content">
+        {% if music_list %}
+            <div class="music_list">
+            <div class="mod_songlist_toolbar">
+                <a href="#" class="mod_btn_green js_all_play" ><i class="mod_btn_green__icon_play"></i>播放全部</a>
+                <a href="#" class="mod_btn js_all_fav" ><i class="mod_btn__icon_add"></i>添加到</a>
+                <a href="#" class="mod_btn js_all_down" ><i class="mod_btn__icon_down"></i>下载</a>
+                <a href="#" class="mod_btn js_batch" ><i class="mod_btn__icon_batch"></i>批量操作</a>
+            </div>
+            <div class="list_header">
+                <ul>
+                    <li class="li_music"><label >歌曲</label></li>
+                    <li class="li_singer"><label >歌手</label></li>
+                    <li class="li_album"><label >专辑</label></li>
+                    <li class="li_time"><label >时长</label></li>
+                </ul>
+            </div>
+            <div class="list_content">
+                {% for music in music_list %}
+                    <div class="rows">
+                        <ul>
+                            <li><div class="music_name"><a>{{ music.music_name }}</a></div></li>
+                            <li><div class="singer"><a >{{ music.singer }}</a></div></li>
+                            <li><div class="album"><a >{{ music.music_name | default:'无名'}}</a></div></li>
+                            <li><div class="time"><a >{{ music.time | default:'3:00'}}</a></div></li>
+                        </ul>
+                    </div>
+                {% endfor %}
+                <div class="mod_page_nav"><strong class="current">1</strong>
+                    <a href="" class="js_pageindex" data-index="2" hidefocus="">2</a>
+                    <a href="" class="js_pageindex" data-index="3" hidefocus="">3</a>
+                    <a href="" class="js_pageindex" data-index="4" hidefocus="">4</a><strong class="more">...</strong>
+                    <a href="" class="js_pageindex" data-index="19" hidefocus="">19</a>
+                    <a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span>&gt;</span></a>
                 </div>
-            {% endfor %}
-            <div class="mod_page_nav"><strong class="current">1</strong>
-                <a href="" class="js_pageindex" data-index="2" hidefocus="">2</a>
-                <a href="" class="js_pageindex" data-index="3" hidefocus="">3</a>
-                <a href="" class="js_pageindex" data-index="4" hidefocus="">4</a><strong class="more">...</strong>
-                <a href="" class="js_pageindex" data-index="19" hidefocus="">19</a>
-                <a href="" class="next js_pageindex" data-index="2" title="下一页" hidefocus=""><span>&gt;</span></a>
             </div>
         </div>
+        {% else %}
+            <div class="search-faild" style="text-align: center; margin: 40px 0; font-size: 20px; line-height: 40px; color: #555555">
+                <p style="display: inline;">很抱歉，暂时没有找到与“<h1 style="display: inline; color: #31c27c">{{ search }}</h1>”相关的结果</p>
+                <p>海螺音乐建议你，请检查输入的关键词是否有误或者过长</p>
+                <p>或到海螺音乐反馈平台，向我们投诉或建议。</p>
+            </div>
+        {% endif %}
     </div>
-    {% elif type == 'user' %}
-        用户
-    {% else %}
-        暂时没有此功能
-    {% endif %}
+    <script type="text/javascript" src="{% static 'js/search.js' %}"></script>
 {% endblock %}
 
 

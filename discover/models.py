@@ -123,9 +123,12 @@ class UserSheet(models.Model):
 
 
 class MusicSheet(models.Model):
-    sheet_id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
+
+    sheet_id = models.IntegerField()
 
     music_id = models.IntegerField()
+
 
     class Meta:
         db_table = 'music_sheet'
