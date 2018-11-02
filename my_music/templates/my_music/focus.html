@@ -14,17 +14,17 @@
 <div class="mod_profile" style="">
     <div class="section_inner">
         <div class="profile__cover_link">
-            <img src="{% static user.image  %}">
+            <img src="{% static that_user.image  %}">
         </div>
         <h1 class="profile__tit">
-        <span class="profile__name">{{ user.user_nickname }}</span>
+        <span class="profile__name">{{ that_user.user_nickname }}</span>
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}?user={{ user.user_id }}"><strong>{{ user.attention }}</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}?user={{ that_user.user_id }}"><strong>{{ that_user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}?user={{ user.user_id }}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}?user={{ that_user.user_id }}"><strong>{{ that_user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>
@@ -32,10 +32,10 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ user.user_id }}">我喜欢</a>
-        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}?user={{ user.user_id }}">我创建的歌单</a>
-        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
-        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}">喜欢</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_song_menu' %}?user={{ that_user.user_id }}">我创建的歌单</a>
+        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ that_user.user_id }}">关注</a>
+        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ that_user.user_id }}">粉丝</a>
     </div>
 
 
@@ -43,7 +43,7 @@
     <div class="js_box" id="focus_box" style="display: block;">
         <div class="mod_tab" role="nav">
             <a class="mod_tab__item mod_tab__current" href="#" >歌手</a>
-            <a class="mod_tab__item" href="{% url 'my_music:focus_user' %}?user={{ user.user_id }}" >用户</a>
+            <a class="mod_tab__item" href="{% url 'my_music:focus_user' %}?user={{ that_user.user_id }}" >用户</a>
         </div>
         <div class="profile_cont">
             <a href="{% url 'index' %}" class="mod_btn btn_focus_fan js_focus_friends" style="display: block;">

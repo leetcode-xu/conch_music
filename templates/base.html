@@ -49,9 +49,9 @@
 					<div class="sign-ligin-btns">
 						<ul>
 							<li id="loginContainer">
-								{% if user.user_id %}
+								{% if this_user.user_id %}
                                     <a href="{% url 'my_music:my_music' %}" class="login" id="loginLabel" >
-                                        <img class="login_img" src="{% static user.image %}">
+                                        <img class="login_img" src="{% static this_user.image %}">
                                     </a>
                                 {% else %}
                                     <a class="login" id="loginButton" href="{% url 'login' %}"><span>登录</span></a>

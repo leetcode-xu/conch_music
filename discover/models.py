@@ -123,9 +123,9 @@ class UserSheet(models.Model):
 
 
 class MusicSheet(models.Model):
-    sheet_id = models.IntegerField(primary_key=True)
+    sheet_id = models.ForeignKey(UserSheet, on_delete=models.CASCADE)
 
-    music_id = models.IntegerField()
+    music_id = models.IntegerField(primary_key=True)
 
     class Meta:
         db_table = 'music_sheet'

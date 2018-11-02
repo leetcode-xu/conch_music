@@ -51,7 +51,7 @@ def index(request):
         order_list_2 = order_list[6:12]
         order_list_3 = order_list[12:18]
         order_list_4 = order_list[18:24]
-        return render_to_response('discover/index.html', {'user': request.session, 'search_form': search,
+        return render_to_response('discover/index.html', {'this_user': request.session, 'search_form': search,
                                                           'recommend_singer_list': recommend_singer_list,
                                                           'recommend_music_list': recommend_music_list,
                                                           'music_one': order_list_1,
@@ -98,7 +98,7 @@ def search(request):
                 return render_to_response('discover/singer_details.html',
                                               {'user': request.session, 'singer': singer_list[0],'search':search , 'music_list':music_list})
             else:
-                return render_to_response('discover/search_faild.html', {'user': request.session, 'search':search})
+                return render_to_response('discover/search_faild.html', {'this_user': request.session, 'search':search})
         # 搜索用户
         elif search_type == 'user':
             user_list = User.objects.filter(user_nickname=search)
@@ -106,11 +106,11 @@ def search(request):
                 return render_to_response('discover/search_user.html',
                                           {'search': search, 'user': request.session, 'user_list': user_list})
             else:
-                return render_to_response('discover/search_faild.html', {'user': request.session, 'search':search})
+                return render_to_response('discover/search_faild.html', {'this_user': request.session, 'search':search})
 
         # 搜索其他
         elif search_type == 'MV' or search_type == 'album' or search_type == 'lyrics' or search_type == 'sheet':
-            return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
+            return render_to_response('discover/search_faild.html', {'this_user': request.session, 'search': search})
         # 搜索歌曲
         else:
             is_ajax = request.GET.get('is_ajax', None)
@@ -119,20 +119,20 @@ def search(request):
                 if music_list:
                     return render_to_response('discover/search_music.html',
                                              {'type': 'music', 'search': search,
-                                              'user': request.session, 'music_list': music_list})
+                                              'this_user': request.session, 'music_list': music_list})
                 else:
-                    return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
+                    return render_to_response('discover/search_faild.html', {'this_user': request.session, 'search': search})
             else:
                 music_list = MusicList.objects.filter(music_name=search)
                 if music_list:
                     return render_to_response('discover/search_result.html',
                                               {'type': 'music', 'search': search,
-                                               'user': request.session, 'music_list': music_list})
+                                               'this_user': request.session, 'music_list': music_list})
                 else:
                     return render_to_response('discover/search_result.html',
-                                              {'type': 'music', 'search': search, 'user': request.session, 'music_list': None})
+                                              {'type': 'music', 'search': search, 'this_user': request.session, 'music_list': None})
     else:
-        return render_to_response('discover/search_faild.html', {'user': request.session, 'search': search})
+        return render_to_response('discover/search_faild.html', {'this_user': request.session, 'search': search})
 
 
 def singer(request, singer_name):
@@ -144,7 +144,7 @@ def singer(request, singer_name):
         #
         # except:
         #     return HttpResponse('歌手不存在')
-        return render_to_response('discover/singer_details.html', {'user':request.session,
+        return render_to_response('discover/singer_details.html', {'this_user':request.session,
                                                                    'singer':singer, 'music_list':music_list})
     else:
         return HttpResponse('歌手不存在')

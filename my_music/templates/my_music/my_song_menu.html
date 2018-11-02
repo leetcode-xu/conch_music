@@ -14,17 +14,17 @@
 <div class="mod_profile" style="">
     <div class="section_inner">
         <div class="profile__cover_link">
-            <img src="{% static user.image  %}">
+            <img src="{% static that_user.image  %}">
         </div>
         <h1 class="profile__tit">
-        <span class="profile__name">{{ user.user_nickname }}</span>
+        <span class="profile__name">{{ that_user.user_nickname }}</span>
         </h1>
         <ul class="mod_user_statistic">
             <li class="user_statistic__item">
-                <a href="{% url 'my_music:attention' %}?user={{ user.user_id }}"><strong>{{ user.attention }}</strong><span>关注</span></a>
+                <a href="{% url 'my_music:attention' %}?user={{ that_user.user_id }}"><strong>{{ that_user.attention }}</strong><span>关注</span></a>
             </li>
             <li>
-                <a href="{% url 'my_music:fans' %}?user={{ user.user_id }}"><strong>{{ user.Fan }}</strong><span>粉丝</span></a>
+                <a href="{% url 'my_music:fans' %}?user={{ that_user.user_id }}"><strong>{{ that_user.Fan }}</strong><span>粉丝</span></a>
             </li>
         </ul>
     </div>
@@ -32,10 +32,10 @@
 
 <div class="song">
     <div class="song_top">
-        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ user.user_id }}">我喜欢</a>
-        <a class="my_like my_like_box" href="#">我创建的歌单</a>
-        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ user.user_id }}">关注</a>
-        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ user.user_id }}">粉丝</a>
+        <a class="my_like my_like_box" href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}">喜欢</a>
+        <a class="my_like my_like_box" href="#">歌单</a>
+        <a class="my_like" href="{% url 'my_music:attention' %}?user={{ that_user.user_id }}">关注</a>
+        <a class="my_like" href="{% url 'my_music:fans' %}?user={{ that_user.user_id }}">粉丝</a>
     </div>
     <div class="new-sheet"><i class="add_img"></i>
         <img src="../../../static/images/add_song.png" class="add_song">
@@ -49,9 +49,9 @@
 		</ul>
         <div class="like">
             <div class="playlist_cover">
-                <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}"><img src="../../../static/images/cover_like.png" alt="我喜欢"></a>
+                <a href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}"><img src="../../../static/images/cover_like.png" alt="我喜欢"></a>
             </div>
-            <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}" class="playlist_my_like">我喜欢</a>
+            <a href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}" class="playlist_my_like">喜欢</a>
             <span class="my_like_num">{{ like_count }}首</span>
         </div>
         <div class="sheet-list">
@@ -59,16 +59,17 @@
                 {% for sheet in sheet_list %}
                     <li class="playlist">
                         <div class="playlist_cover">
-                        <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}"><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
+                        <a href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}&sheet={{ sheet.sheet_id }}"><img src="{% static sheet.sheet_pic %}" alt="我喜欢"></a>
                         </div>
-                        <a href="{% url 'my_music:my_music' %}?user={{ user.user_id }}&sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
+                        <a href="{% url 'my_music:my_music' %}?user={{ that_user.user_id }}&sheet={{ sheet.sheet_id }}" class="playlist_my_like">{{ sheet.sheet_name }}</a>
                         <span class="playlist_num">{{ sheet.sheet_num }}首</span>
+                        <div data-this_user="{{ this_user.user_id }}" data-that_user="{{ that_user.user_id }}" class="del-list-icon" data-sheet_id="{{ sheet.sheet_id }}"></div>
                     </li>
                 {% endfor %}
             </ul>
         </div>
 	</div>
-<script type="text/javascript" src="{% static 'js/sheet.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/sheet.js' %}"></script>
 </div>
 {% endblock %}
 

@@ -1137,9 +1137,9 @@ a:active{text-decoration: none;color:green;}
 }
 .playlist_num{
     float: left;
-    width: 500px;
+    width: 460px;
     height: 50px;
-    margin: 16px 61px;
+    margin: 16px 0  16px 61px;
 }
 .like{
 	margin-left: 20px;
@@ -1179,3 +1179,17 @@ fnew-sheet:hover{
 	top: 2px;
 }
 
+.del-list-icon{
+	display: none;
+	float: left;
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	background-image: url('../images/sheet_del_2.png');
+	background-size: 100% ;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+.del-list-icon:hover{
+	background-image: url('../images/sheet_del_1.png');
+}

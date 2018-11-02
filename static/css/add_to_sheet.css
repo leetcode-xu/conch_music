@@ -6,7 +6,7 @@
     left:40%;
     top:50%;
     background: #E7E7E7;
-    display: block;
+    display: none;
 }
 .add-to-sheet li{
     float: left;
