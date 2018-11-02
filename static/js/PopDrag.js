@@ -91,6 +91,8 @@ var EventUtil = {
     setOpacity: function (el, level) {
         return el.filters ? (el.style.filter = 'alpha(opacity =' + level + ')') : (el.style.opacity = level / 100);
     },
+
+
     fadeIn: function (params) {
         params = params || {};
         var el = params.el || null,
@@ -159,13 +161,7 @@ PopUp.prototype = {
                 Drag({
                     target: this.pop,
                     isScroll: params.isScroll || 'enabled'
-                    //sMode:'horizontal'  
-                    //                        range:{  
-                    //                            minLeft:EventUtil._$('range').getBoundingClientRect().left,  
-                    //                            maxLeft:EventUtil._$('range').getBoundingClientRect().right - this.pop.offsetWidth,  
-                    //                            minTop:EventUtil._$('range').getBoundingClientRect().top,  
-                    //                            maxTop:EventUtil._$('range').getBoundingClientRect().bottom - this.pop.offsetHeight  
-                    //                        }  
+
                 });
         //如果禁用拖放需要把拖动手柄的鼠标样式设为默认  
         if (this.enableDrag == false) this.handle.style.cursor = 'default';
@@ -313,6 +309,11 @@ Drag.prototype = {
         EventUtil.removeEvent(document, 'mouseup', this.upHandler);
     }
 };
+
+
+
+
+
 
 /* 
  * 遮罩层构造函数 
