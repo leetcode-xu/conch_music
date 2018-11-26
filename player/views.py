@@ -49,13 +49,14 @@ def player(request):
             music_history = MusicHistory.objects.filter(user_id=user_history_id, Hmusic_id=list_id)
             if not music_history:
                 MusicHistory.objects.create(user_id=user_history_id, Hmusic_id=list_id)
-            music_history_list = MusicHistory.objects.filter(user_id=user_history_id).order_by('-history_id')
-            music_list = []
+            music_history_list = MusicHistory.objects.filter(user_id=user_history_id).order_by('-history_id').values('Hmusic_id')
+            music_list = MusicList.objects.filter(list_id__in=[1, 2])
             singer_list = []
-            for mhl in music_history_list:
-                music = MusicList.objects.filter(list_id=mhl.Hmusic_id)[0]
-                if music:
-                    music_list.append(music)
+
+            # for mhl in music_history_list:
+            #     music = MusicList.objects.filter(list_id=mhl.Hmusic_id)[0]
+            #     if music:
+            #         music_list.append(music)
             return render(request, 'player/player.html', {'userImage':request.session.get('image'),
                                                           'music_list':music_list,
                                                           'singer_list':singer_list,
