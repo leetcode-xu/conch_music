@@ -1,14 +1,3 @@
-<p>啊啊啊!测试一下</p>
-<p>ssh-keygen -t rsa -C "781110910@qq.com"</p>
 
-<p>git init</p>
-<p>git add *</p>
-<p>git commit -m 'first commit'</p>
-<p>git remote add origin git@github.com:zhulijiange/ConchMusic.git(第一次)</p>
-<p>git push -u origin master(第一次)</p>
 
-<p>git push origin master(以后)</p>
-
-<p>git clone git@github.com:zhulijiange/ConchMusic.git</p>
-zuihouyici
-
+项目主要功能是搜索播放歌曲，并对其进行收藏以及查看他人收藏的歌曲，在搜索并关注用户、歌手后能够查看其基本信息和歌单，播放功能则是一个独立的窗体页面，主要显示歌曲列表，歌词显示，歌曲收藏、下载等功能，播放界面右侧通过Ajax实时更新歌曲的歌词，通过js实现歌曲与歌词的同步。页面下侧是一个控制视图，能够实现单曲、随机、顺序播放以及收藏，控制视图十分人性化，能够通过拖拽、点击歌曲进度条和音量进度条控制器播放时间和音量。
